@@ -1,8 +1,12 @@
 #include <iostream>
 
-#include "include/pessoa.hpp"
+#include "pessoa.hpp"
 
-Pessoa::Pessoa(){}
+Pessoa::Pessoa(){
+    nome = "-";
+    cpf = "000.000.000-00";
+    dataNascimento = "00/00/0000";
+}
 
 Pessoa::Pessoa(std::string nome, std::string cpf, std::string dataNascimento){
     this->nome = nome;
