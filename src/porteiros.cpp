@@ -2,29 +2,31 @@
 
 #include "porteiros.hpp"
 
+using namespace std;
+
 Porteiros::Porteiros() : Funcionarios(){
     this->portaria = "";
     this->turno = "";
 }
 
-Porteiros::Porteiros(std::string nome, std::string cpf, std::string dataNascimento, std::string matricula, std::string funcao, float cargaHoraria, std::string portaria, std::string turno) : Funcionarios(nome, cpf, dataNascimento, matricula, funcao, cargaHoraria){
+Porteiros::Porteiros(string nome, string cpf, string dataNascimento, string matricula, string funcao, float cargaHoraria, string portaria, string turno) : Funcionarios(nome, cpf, dataNascimento, matricula, funcao, cargaHoraria){
     this->portaria = portaria;
     this->turno = turno;
 }
 
-std::string Porteiros::getPortaria(){
+string Porteiros::getPortaria(){
     return this->portaria;
 }
 
-std::string Porteiros::getTurno(){
+string Porteiros::getTurno(){
     return this->turno;
 }
 
-void Porteiros::setPortaria(std::string portaria){
+void Porteiros::setPortaria(string portaria){
     this->portaria = portaria;
 }
 
-void Porteiros::setTurno(std::string turno){
+void Porteiros::setTurno(string turno){
     this->turno = turno;
 }
 
