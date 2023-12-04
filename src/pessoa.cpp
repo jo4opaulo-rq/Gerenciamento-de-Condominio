@@ -3,8 +3,8 @@
 #include "pessoa.hpp"
 
 Pessoa::Pessoa(){
-    nome = "-";
-    cpf = "000.000.000-00";
+    nome           = "-";
+    cpf            = "000.000.000-00";
     dataNascimento = "00/00/0000";
 }
 
