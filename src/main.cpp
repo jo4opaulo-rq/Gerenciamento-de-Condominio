@@ -23,5 +23,11 @@ int main(){
     cout << "Telefone: " << r1.getTelefone() << endl;
     cout << "Email: " << r1.getEmail() << endl;
 
+
+   Residentes r2("Maria", "123456789-10", "01/01/2000", 1, 1, 1, 1, "01/01/2020", "01/01/2021", "99999-9999", "maria@");
+    cout << "Residente N°2: " << endl;
+    cout << "Nome: " << r2.getNome() << endl;
+    cout << "CPF: " << r2.getCpf() << endl;
+
     return 0;
 }
