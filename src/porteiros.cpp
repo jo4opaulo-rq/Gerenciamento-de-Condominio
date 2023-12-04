@@ -15,11 +15,11 @@ Porteiros::Porteiros(string nome, string cpf, string dataNascimento, string matr
 }
 
 string Porteiros::getPortaria(){
-    return this->portaria;
+    return portaria;
 }
 
 string Porteiros::getTurno(){
-    return this->turno;
+    return turno;
 }
 
 void Porteiros::setPortaria(string portaria){
