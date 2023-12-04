@@ -1,9 +1,10 @@
 #include <iostream>
-#include "pessoa.hpp"
+// #include "pessoa.hpp"
+#include "funcionarios.hpp"
 
 using namespace std;
 
 int main(){
-    Pessoa *Tobias = new Pessoa();
-    cout << Tobias->getCpf();
+   
+
 }
