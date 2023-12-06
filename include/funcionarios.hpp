@@ -3,7 +3,7 @@
 #include <iostream>
 #include "pessoa.hpp"
 
-class Funcionarios: public Pessoa{
+class Funcionarios : public Pessoa{
     protected:
         std::string matricula;
         std::string funcao;
