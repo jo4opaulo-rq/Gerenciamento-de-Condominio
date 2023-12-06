@@ -4,25 +4,25 @@
 #include "pessoa.hpp"
 
 class Funcionarios: public Pessoa{
-    private: 
-    std::string matricula;
-    std::string funcao;
-    std::string setor;
-    float cargaHoraria;
-
-
-    public: 
-    Funcionarios();
-    Funcionarios(std::string nome, std::string cpf, std::string dataNascimento, std::string matricula, std::string funcao, float cargaHoraria);
-    std::string getMatricula();
-    std::string getFuncao();
-    std::string getSetor();
-    float getCargaHoraria();
-    void setMatricula(std::string matricula);
-    void setFuncao(std::string funcao);
-    void setSetor(std::string setor);
-    void setCargaHoraria(float cargaHoraria);
-
+    protected:
+        std::string matricula;
+        std::string funcao;
+        std::string setor;
+        float cargaHoraria;
+        float salario;
+    public:
+        Funcionarios();
+        Funcionarios(std::string nome, std::string cpf, std::string dataNascimento, std::string matricula, std::string funcao, std::string setor, float cargaHoraria, float salario);
+        std::string getMatricula();
+        std::string getFuncao();
+        std::string getSetor();
+        float getCargaHoraria();
+        virtual float getSalario() = 0;
+        void setMatricula(std::string matricula);
+        void setFuncao(std::string funcao);
+        void setSetor(std::string setor);
+        void setCargaHoraria(float cargaHoraria);
+        virtual void setSalario(float salario) = 0;
 };
 
 

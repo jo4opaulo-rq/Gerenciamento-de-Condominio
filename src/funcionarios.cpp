@@ -11,36 +11,42 @@ Funcionarios::Funcionarios(){
     cargaHoraria = 00.0;
 
 }
-Funcionarios::Funcionarios(string nome, string cpf, string dataNascimento, string matricula, string funcao, float cargaHoraria): Pessoa(nome, cpf, dataNascimento){
+Funcionarios::Funcionarios(std::string nome, std::string cpf, std::string dataNascimento, std::string matricula, std::string funcao, std::string setor, float cargaHoraria, float salario){
     this->matricula = matricula;
-    this->funcao       = funcao;
-    this->setor        = setor;
+    this->funcao    = funcao;
+    this->setor     = setor;
     this->cargaHoraria = cargaHoraria;
-    
+    this->salario = salario;
 }
 
 string Funcionarios::getMatricula(){
-    return this->matricula;
-}
-string Funcionarios::getFuncao(){
-    return this->funcao;
-}
-string Funcionarios::getSetor(){
-    return this->setor;
-}
-float Funcionarios::getCargaHoraria(){
-    return this->cargaHoraria;
+    return matricula;
 }
 
- void Funcionarios::setMatricula(std::string matricula){
+string Funcionarios::getFuncao(){
+    return funcao;
+}
+
+string Funcionarios::getSetor(){
+    return setor;
+}
+
+float Funcionarios::getCargaHoraria(){
+    return cargaHoraria;
+}
+
+void Funcionarios::setMatricula(string matricula){
     this->matricula = matricula;
- }
-void Funcionarios::setFuncao(std::string funcao){
-    this->funcao       = funcao;
 }
-void Funcionarios::setSetor(std::string setor){
-    this->setor        = setor;
+
+void Funcionarios::setFuncao(string funcao){
+    this->funcao = funcao;
 }
+
+void Funcionarios::setSetor(string setor){
+    this->setor = setor;
+}
+
 void Funcionarios::setCargaHoraria(float cargaHoraria){
     this->cargaHoraria = cargaHoraria;
 }
