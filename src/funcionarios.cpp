@@ -9,9 +9,9 @@ Funcionarios::Funcionarios(){
     funcao    = "#";
     setor     = "--";
     cargaHoraria = 00.0;
-
+    salario = 00.0;
 }
-Funcionarios::Funcionarios(std::string nome, std::string cpf, std::string dataNascimento, std::string matricula, std::string funcao, std::string setor, float cargaHoraria, float salario){
+Funcionarios::Funcionarios(std::string matricula, std::string funcao, std::string setor, float cargaHoraria, float salario){
     this->matricula = matricula;
     this->funcao    = funcao;
     this->setor     = setor;

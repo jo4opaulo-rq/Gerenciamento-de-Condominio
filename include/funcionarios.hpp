@@ -3,7 +3,7 @@
 #include <iostream>
 #include "pessoa.hpp"
 
-class Funcionarios: public Pessoa{
+class Funcionarios : public Pessoa{
     protected:
         std::string matricula;
         std::string funcao;
@@ -12,7 +12,7 @@ class Funcionarios: public Pessoa{
         float salario;
     public:
         Funcionarios();
-        Funcionarios(std::string nome, std::string cpf, std::string dataNascimento, std::string matricula, std::string funcao, std::string setor, float cargaHoraria, float salario);
+        Funcionarios(std::string matricula, std::string funcao, std::string setor, float cargaHoraria, float salario);
         std::string getMatricula();
         std::string getFuncao();
         std::string getSetor();
