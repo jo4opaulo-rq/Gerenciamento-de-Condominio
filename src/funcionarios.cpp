@@ -50,3 +50,4 @@ void Funcionarios::setSetor(string setor){
 void Funcionarios::setCargaHoraria(float cargaHoraria){
     this->cargaHoraria = cargaHoraria;
 }
+

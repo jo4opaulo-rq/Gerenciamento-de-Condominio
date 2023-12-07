@@ -13,4 +13,5 @@ add_executable( main
                 src/porteiros.cpp
                 src/residentes.cpp
                 src/visitante.cpp
+                src/zelador.cpp
                 )

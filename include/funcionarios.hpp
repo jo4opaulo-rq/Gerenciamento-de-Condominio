@@ -1,9 +1,8 @@
 #ifndef FUNCIONARIOS_HPP
 #define FUNCIONARIOS_HPP
 #include <iostream>
-#include "pessoa.hpp"
 
-class Funcionarios : public Pessoa{
+class Funcionarios{
     protected:
         std::string matricula;
         std::string funcao;
