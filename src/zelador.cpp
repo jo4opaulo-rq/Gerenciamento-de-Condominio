@@ -15,15 +15,15 @@ Zelador::Zelador(string nome, string cpf, string dataNascimento, string matricul
 }
 
 string Zelador::getTurno(){
-    return this->turno;
+    return turno;
+}
+
+float Zelador::getSalario(){
+    return salario;
 }
 
 void Zelador::setTurno(string turno){
     this->turno = turno;
-}
-
-float Zelador::getSalario(){
-    return this->salario + (this->salario * this->adicionalInsalubridade);
 }
 
 void Zelador::setSalario(float salario){
