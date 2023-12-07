@@ -14,8 +14,8 @@ class Zelador : public Funcionarios, public Pessoa{
         Zelador();
         Zelador(std::string nome, std::string cpf, std::string dataNascimento, std::string matricula, std::string funcao, std::string setor, float cargaHoraria, float salario, std::string turno);
         std::string getTurno();
-        void setTurno(std::string turno);
         float getSalario();
+        void setTurno(std::string turno);
         void setSalario(float salario);
 };
 
