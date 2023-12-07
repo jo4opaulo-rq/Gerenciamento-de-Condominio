@@ -3,6 +3,7 @@
 #include "porteiros.hpp"
 #include "residentes.hpp"
 #include "zelador.hpp"
+#include "seguranca.hpp"
 
 using namespace std;
 
@@ -40,6 +41,16 @@ int main(){
     cout << "Matricula: " << z1.getMatricula() << endl;
     cout << "Turno: " << z1.getTurno() << endl;
     cout << "Salario: " << z1.getSalario() << endl;
+
+    Seguranca s1("Pedro", "123456789-10", "01/01/2000", "00001", "Seguranca", "Administrativo", 40, 1000, "Noturno");
+
+    cout << "\n\nSeguranca N°1: " << endl;
+    cout << "Nome: " << s1.getNome() << endl;
+    cout << "CPF: " << s1.getCpf() << endl;
+    cout << "Data de Nascimento: " << s1.getDataNascimento() << endl;
+    cout << "Matricula: " << s1.getMatricula() << endl;
+    cout << "Turno: " << s1.getTurno() << endl;
+    cout << "Salario: " << s1.getSalario() << endl;
 
     return 0;
 }

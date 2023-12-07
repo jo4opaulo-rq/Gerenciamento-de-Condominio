@@ -14,4 +14,5 @@ add_executable( main
                 src/residentes.cpp
                 src/visitante.cpp
                 src/zelador.cpp
+                src/seguranca.cpp
                 )
