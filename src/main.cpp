@@ -23,16 +23,16 @@ int main(){
 
         switch(opcao){
             case 1:
-                //cadastrar residente
+                administrador.cadastrarResidente();
                 break;
             case 2:
-                //cadastrar funcionario
+                administrador.cadastrarFuncionario();
                 break;
             case 3:
-                //listar residentes
+                administrador.listarResidentes();
                 break;
             case 4:
-                //listar funcionarios
+                administrador.listarFuncionarios();
                 break;
             case 5:
                 //remover residente
