@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main(){
+int main2(){
 
     //Residentes(string nome, string cpf, string dataNascimento, int predio, int apartamento, int andar, int vagaGaragem, string dataEntrada, string dataSaida, string telefone, string email):Pessoa(nome, cpf, dataNascimento
     Residentes r1("Joao", "123456789-10", "01/01/2000", 1, 1, 1, 1, "01/01/2020", "01/01/2021", "99999-9999", "ze@gmail.com");

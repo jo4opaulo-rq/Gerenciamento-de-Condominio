@@ -13,4 +13,10 @@ add_executable( main
                 src/porteiros.cpp
                 src/residentes.cpp
                 src/visitante.cpp
+<<<<<<< Updated upstream
+=======
+                src/zelador.cpp
+                src/seguranca.cpp
+                src/test.cpp
+>>>>>>> Stashed changes
                 )
