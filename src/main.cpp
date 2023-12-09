@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 #include "administrador.hpp"
 #include "porteiro.hpp"
@@ -23,7 +24,18 @@ int main(){
 
     do{
         administrador.menuAdministrador();
-        cin >> opcao;
+        try{
+            cin >> opcao;
+            if(cin.fail()){
+                throw runtime_error("---Erro: Digite um número inteiro!---\n");
+            }
+        } catch(runtime_error &e){
+            system("clear || cls");
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
 
         switch(opcao){
             case 1:
@@ -51,13 +63,15 @@ int main(){
                 //buscar funcionario
                 break;
             case 9:
-                cout << "\nEncerrando Sistema..." << endl;
+                system("clear || cls");
+                cout << "---Encerrando Sistema..." << endl;
                 administrador.atualizarArquivo("archives/residentes");
                 administrador.atualizarArquivo("archives/segurancas");
                 administrador.atualizarArquivo("archives/zeladores");
                 break;
             default:
-                cout << "Opção inválida!" << endl;
+                system("clear || cls");
+                cout << "---Opção inválida! Digite um número entre 1 e 9---\n" << endl;
                 break;
         }
     } while(opcao != 9);
