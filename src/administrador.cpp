@@ -68,13 +68,14 @@ void Administrador::lerArquivo(string nomeArquivo){
             turno = linhas[i + 8];
 
             if(nomeArquivo == "archives/zeladores"){
-                Zelador novoZelador(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno);
+                Zelador novoZelador(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno, true);
                 zeladores.push_back(novoZelador);
-            } else if(nomeArquivo == "archives/segurancas"){
-                Seguranca novoSeguranca(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno);
-                segurancas.push_back(novoSeguranca);
             }
 
+            if(nomeArquivo == "archives/segurancas"){
+                Seguranca novoSeguranca(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno, true);
+                segurancas.push_back(novoSeguranca);
+            }
             i += 6;
         }
     }
@@ -99,6 +100,7 @@ void Administrador::atualizarArquivo(string nomeArquivo){
                 arquivo << residentes[i].getDataSaida() << endl;
                 arquivo << residentes[i].getTelefone() << endl;
                 arquivo << residentes[i].getEmail() << endl;
+                arquivo << endl;
             }
         } else if(nomeArquivo == "archives/zeladores"){
             for(int i = 0; i < zeladores.size(); i++){
@@ -111,6 +113,7 @@ void Administrador::atualizarArquivo(string nomeArquivo){
                 arquivo << zeladores[i].getCargaHoraria() << endl;
                 arquivo << zeladores[i].getSalario() << endl;
                 arquivo << zeladores[i].getTurno() << endl;
+                arquivo << endl;
             }
         } else if(nomeArquivo == "archives/segurancas"){
             for(int i = 0; i < segurancas.size(); i++){
@@ -123,6 +126,7 @@ void Administrador::atualizarArquivo(string nomeArquivo){
                 arquivo << segurancas[i].getCargaHoraria() << endl;
                 arquivo << segurancas[i].getSalario() << endl;
                 arquivo << segurancas[i].getTurno() << endl;
+                arquivo << endl;
             }
         }
     } else{
@@ -200,12 +204,12 @@ void Administrador::cadastrarFuncionario(){
     system("clear||cls");
 
     if(funcao == "Zelador" || funcao == "zelador"){
-        Zelador novoZelador(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno);
+        Zelador novoZelador(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno, false);
         zeladores.push_back(novoZelador);
 
         cout << "---Zelador cadastrado com sucesso!\n" << endl;
     } else if(funcao == "Segurança" || funcao == "segurança"){
-        Seguranca novoSeguranca(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno);
+        Seguranca novoSeguranca(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno, false);
         segurancas.push_back(novoSeguranca);
 
         cout << "---Segurança cadastrado com sucesso!\n" << endl;
