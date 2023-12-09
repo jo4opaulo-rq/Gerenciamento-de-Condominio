@@ -22,6 +22,7 @@ class Porteiro : public Funcionarios, public Residentes{
         void setTurno(std::string turno);
         void setPortaria(std::string portaria);
         void setSenha(std::string senha);
+        void lerArquivo(std::string nomeArquivo);
         void buscarResidente(std::string cpf);
         
         
