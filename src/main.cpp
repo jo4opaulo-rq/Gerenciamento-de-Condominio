@@ -6,23 +6,81 @@
 
 using namespace std;
 
-int main2(){
+int main(){
 
     Administrador administrador;
-    //Zelador zelador
+    Porteiro porteiro;
+    string login;
     int opcao = 0;
 
     administrador.lerArquivo("archives/residentes");
     administrador.lerArquivo("archives/segurancas");
     administrador.lerArquivo("archives/zeladores");
 
+    porteiro.lerArquivo("archives/visitantes");
+    porteiro.lerArquivo("archives/encomendas");
+
     cout << "---------------------------" << endl;
     cout << "----------SISTEMA----------" << endl;
     cout << "---------------------------" << endl;
 
-    //login
+    login = "porteiro";
 
-    do{
+    if(login == "porteiro"){
+        do{
+            porteiro.menuPorteiro();
+            try{
+                cin >> opcao;
+                if(cin.fail()){
+                    throw runtime_error("---Erro: Digite um número inteiro!---\n");
+                }
+            } catch(runtime_error &e){
+                system("clear || cls");
+                cout << e.what() << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+
+            switch(opcao){
+                case 1:
+                    //porteiro.cadastrarResidente();
+                    break;
+                case 2:
+                    //porteiro.cadastrarEncomenda();
+                    break;
+                case 3:
+                    //porteiro.listarResidentes();
+                    break;
+                case 4:
+                    //porteiro.listarEncomendas();
+                    break;
+                case 5:
+                    //porteiro.removerResidente();
+                    break;
+                case 6:
+                    //porteiro.removerEncomenda();
+                    break;
+                case 7:
+                    //porteiro.buscarResidente();
+                    break;
+                case 8:
+                    porteiro.buscarEncomenda();
+                    break;
+                case 9:
+                    system("clear || cls");
+                    cout << "---Encerrando Sistema..." << endl;
+                    //porteiro.atualizarArquivo("archives/residentes");
+                    //porteiro.atualizarArquivo("archives/encomendas");
+                    break;
+                default:
+                    system("clear || cls");
+                    cout << "---Opção inválida! Digite um número entre 1 e 9---\n" << endl;
+                    break;
+            }
+        } while(opcao != 9);
+    } else{
+        do{
         administrador.menuAdministrador();
         try{
             cin >> opcao;
@@ -74,7 +132,7 @@ int main2(){
                 cout << "---Opção inválida! Digite um número entre 1 e 9---\n" << endl;
                 break;
         }
-    } while(opcao != 9);
-
+        } while(opcao != 9);
+    }
     return 0;
 }
