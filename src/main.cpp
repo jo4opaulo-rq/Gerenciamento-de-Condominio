@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main(){
+int main2(){
 
     Administrador administrador;
     //Zelador zelador
