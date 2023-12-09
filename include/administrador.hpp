@@ -16,6 +16,8 @@ class Administrador : public Residentes, public Seguranca, public Zelador{
         std::vector<Zelador> zeladores;
     public:
         void menuAdministrador();
+        void lerArquivo(std::string nomeArquivo);
+        void atualizarArquivo(std::string nomeArquivo);
         void cadastrarResidente();
         void cadastrarFuncionario();
         void listarResidentes();
