@@ -22,6 +22,10 @@ class Administrador : public Residentes, public Seguranca, public Zelador{
         void cadastrarFuncionario();
         void listarResidentes();
         void listarFuncionarios();
+        void removerResidente();
+        void removerFuncionario();
+        void buscarResidente();
+        void buscarFuncionario();
 };
 
 #endif
