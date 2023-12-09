@@ -11,6 +11,10 @@ int main(){
     //Zelador zelador
     int opcao = 0;
 
+    administrador.lerArquivo("archives/residentes");
+    administrador.lerArquivo("archives/segurancas");
+    administrador.lerArquivo("archives/zeladores");
+
     cout << "---------------------------" << endl;
     cout << "----------SISTEMA----------" << endl;
     cout << "---------------------------" << endl;
@@ -48,6 +52,9 @@ int main(){
                 break;
             case 9:
                 cout << "\nEncerrando Sistema..." << endl;
+                administrador.atualizarArquivo("archives/residentes");
+                administrador.atualizarArquivo("archives/segurancas");
+                administrador.atualizarArquivo("archives/zeladores");
                 break;
             default:
                 cout << "Opção inválida!" << endl;

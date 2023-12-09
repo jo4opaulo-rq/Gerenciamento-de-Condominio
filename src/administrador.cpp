@@ -19,8 +19,118 @@ void Administrador::menuAdministrador(){
     cout << "Opção: ";
 }
 
+void Administrador::lerArquivo(string nomeArquivo){
+    string nome, cpf, dataNascimento, dataEntrada, dataSaida, telefone, email, matricula, funcao, setor, turno;
+    int predio, apartamento, andar, vagaGaragem;
+    float cargaHoraria, salario;
+    vector<string> linhas;
+    fstream arquivo;
+
+    arquivo.open(nomeArquivo + ".txt", ios::in | ios::app);
+
+    if(arquivo.is_open()){
+        string linha;
+
+        while(getline(arquivo, linha)){
+            linhas.push_back(linha);
+        }
+
+        arquivo.close();
+    } else{
+        cout << "Erro ao abrir o arquivo!" << endl;
+    }
+
+    for(int i = 0; i < linhas.size(); i+= 4){
+        nome = linhas[i];
+        cpf = linhas[i + 1];
+        dataNascimento = linhas[i + 2];
+
+        if(nomeArquivo == "archives/residentes"){
+            predio = stoi(linhas[i + 3]);
+            apartamento = stoi(linhas[i + 4]);
+            andar = stoi(linhas[i + 5]);
+            vagaGaragem = stoi(linhas[i + 6]);
+            dataEntrada = linhas[i + 7];
+            dataSaida = linhas[i + 8];
+            telefone = linhas[i + 9];
+            email = linhas[i + 10];
+
+            Residentes novoResidente(nome, cpf, dataNascimento, predio, apartamento, andar, vagaGaragem, dataEntrada, dataSaida, telefone, email);
+            residentes.push_back(novoResidente);
+
+            i += 8;
+        } else{
+            matricula = linhas[i + 3];
+            funcao = linhas[i + 4];
+            setor = linhas[i + 5];
+            cargaHoraria = stof(linhas[i + 6]);
+            salario = stof(linhas[i + 7]);
+            turno = linhas[i + 8];
+
+            if(nomeArquivo == "archives/zeladores"){
+                Zelador novoZelador(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno);
+                zeladores.push_back(novoZelador);
+            } else if(nomeArquivo == "archives/segurancas"){
+                Seguranca novoSeguranca(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno);
+                segurancas.push_back(novoSeguranca);
+            }
+
+            i += 6;
+        }
+    }
+}
+
+void Administrador::atualizarArquivo(string nomeArquivo){
+    fstream arquivo;
+
+    arquivo.open(nomeArquivo + ".txt", ios::out);
+
+    if(arquivo.is_open()){
+        if(nomeArquivo == "archives/residentes"){
+            for(int i = 0; i < residentes.size(); i++){
+                arquivo << residentes[i].getNome() << endl;
+                arquivo << residentes[i].getCpf() << endl;
+                arquivo << residentes[i].getDataNascimento() << endl;
+                arquivo << residentes[i].getPredio() << endl;
+                arquivo << residentes[i].getApartamento() << endl;
+                arquivo << residentes[i].getAndar() << endl;
+                arquivo << residentes[i].getVagaGaragem() << endl;
+                arquivo << residentes[i].getDataEntrada() << endl;
+                arquivo << residentes[i].getDataSaida() << endl;
+                arquivo << residentes[i].getTelefone() << endl;
+                arquivo << residentes[i].getEmail() << endl;
+            }
+        } else if(nomeArquivo == "archives/zeladores"){
+            for(int i = 0; i < zeladores.size(); i++){
+                arquivo << zeladores[i].getNome() << endl;
+                arquivo << zeladores[i].getCpf() << endl;
+                arquivo << zeladores[i].getDataNascimento() << endl;
+                arquivo << zeladores[i].getMatricula() << endl;
+                arquivo << zeladores[i].getFuncao() << endl;
+                arquivo << zeladores[i].getSetor() << endl;
+                arquivo << zeladores[i].getCargaHoraria() << endl;
+                arquivo << zeladores[i].getSalario() << endl;
+                arquivo << zeladores[i].getTurno() << endl;
+            }
+        } else if(nomeArquivo == "archives/segurancas"){
+            for(int i = 0; i < segurancas.size(); i++){
+                arquivo << segurancas[i].getNome() << endl;
+                arquivo << segurancas[i].getCpf() << endl;
+                arquivo << segurancas[i].getDataNascimento() << endl;
+                arquivo << segurancas[i].getMatricula() << endl;
+                arquivo << segurancas[i].getFuncao() << endl;
+                arquivo << segurancas[i].getSetor() << endl;
+                arquivo << segurancas[i].getCargaHoraria() << endl;
+                arquivo << segurancas[i].getSalario() << endl;
+                arquivo << segurancas[i].getTurno() << endl;
+            }
+        }
+    } else{
+        cout << "Erro ao abrir o arquivo!" << endl;
+    }
+}
+
 void Administrador::cadastrarResidente(){
-    //Residentes(string nome, string cpf, string dataNascimento, int predio, int apartamento, int andar, int vagaGaragem, string dataEntrada, string dataSaida, string telefone, string email)
     string nome, cpf, dataNascimento, dataEntrada, dataSaida, telefone, email;
     int predio, apartamento, andar, vagaGaragem;
 
@@ -60,8 +170,6 @@ void Administrador::cadastrarResidente(){
 }
 
 void Administrador::cadastrarFuncionario(){
-    //Seguranca(string nome, string cpf, string dataNascimento, string matricula, string funcao, string setor, float cargaHoraria, float salario, string turno)
-
     string nome, cpf, dataNascimento, matricula, funcao, setor, turno;
     float cargaHoraria, salario;
 
@@ -109,11 +217,10 @@ void Administrador::cadastrarFuncionario(){
 
 void Administrador::listarResidentes(){
     system("clear||cls");
-
     if(residentes.size() == 0){
         cout << "---Não há residentes cadastrados!---\n" << endl;
     } else{
-        cout << "       ---Lista de Residentes---" << endl;
+        cout << "--------Lista de Residentes--------" << endl;
         for(int i = 0; i < residentes.size(); i++){
         cout << "---Residente N°" << i + 1 << endl;
         cout << "Nome: " << residentes[i].getNome() << endl;
@@ -127,6 +234,7 @@ void Administrador::listarResidentes(){
         cout << "Data de Saída: " << residentes[i].getDataSaida() << endl;
         cout << "Telefone: " << residentes[i].getTelefone() << endl;
         cout << "E-mail: " << residentes[i].getEmail() << endl;
+        cout << "-----------------------------------";
         cout << endl;
         }
     }
@@ -134,8 +242,7 @@ void Administrador::listarResidentes(){
 
 void Administrador::listarFuncionarios(){
     system("clear||cls");
-
-    cout << "       ---Lista de Funcionários---" << endl;
+    cout << "-----------Lista de Funcionários-----------" << endl;
 
     if(zeladores.size() == 0){
         cout << "\n---Não há zeladores cadastrados!---\n" << endl;
@@ -152,6 +259,7 @@ void Administrador::listarFuncionarios(){
             cout << "Carga Horária: " << zeladores[i].getCargaHoraria() << endl;
             cout << "Salário: " << zeladores[i].getSalario() << endl;
             cout << "Turno: " << zeladores[i].getTurno() << endl;
+            cout << "-----------------------------------";
             cout << endl;
         }
     }
@@ -171,6 +279,7 @@ void Administrador::listarFuncionarios(){
             cout << "Carga Horária: " << segurancas[i].getCargaHoraria() << endl;
             cout << "Salário: " << segurancas[i].getSalario() << endl;
             cout << "Turno: " << segurancas[i].getTurno() << endl;
+            cout << "-----------------------------------";
             cout << endl;
         }
     }
