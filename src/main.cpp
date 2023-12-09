@@ -51,16 +51,16 @@ int main(){
                 administrador.listarFuncionarios();
                 break;
             case 5:
-                //remover residente
+                administrador.removerResidente();
                 break;
             case 6:
-                //remover funcionario
+                administrador.removerFuncionario();
                 break;
             case 7:
-                //buscar residente
+                administrador.buscarResidente();
                 break;
             case 8:
-                //buscar funcionario
+                administrador.buscarFuncionario();
                 break;
             case 9:
                 system("clear || cls");

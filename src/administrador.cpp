@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <limits>
 
 #include "administrador.hpp"
 
@@ -168,7 +169,7 @@ void Administrador::cadastrarResidente(){
     Residentes novoResidente(nome, cpf, dataNascimento, predio, apartamento, andar, vagaGaragem, dataEntrada, dataSaida, telefone, email);
     residentes.push_back(novoResidente);
 
-    system("clear||cls");
+    system("clear || cls");
 
     cout << "---Residente cadastrado com sucesso!\n" << endl;
 }
@@ -201,7 +202,7 @@ void Administrador::cadastrarFuncionario(){
     cin.ignore();
     getline(cin, turno);
 
-    system("clear||cls");
+    system("clear || cls");
 
     if(funcao == "Zelador" || funcao == "zelador"){
         Zelador novoZelador(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno, false);
@@ -220,7 +221,7 @@ void Administrador::cadastrarFuncionario(){
 }
 
 void Administrador::listarResidentes(){
-    system("clear||cls");
+    system("clear || cls");
     if(residentes.size() == 0){
         cout << "---Não há residentes cadastrados!---\n" << endl;
     } else{
@@ -245,7 +246,7 @@ void Administrador::listarResidentes(){
 }
 
 void Administrador::listarFuncionarios(){
-    system("clear||cls");
+    system("clear || cls");
     cout << "-----------Lista de Funcionários-----------" << endl;
 
     if(zeladores.size() == 0){
@@ -285,6 +286,173 @@ void Administrador::listarFuncionarios(){
             cout << "Turno: " << segurancas[i].getTurno() << endl;
             cout << "-----------------------------------";
             cout << endl;
+        }
+    }
+}
+
+void Administrador::removerResidente(){
+    string cpf;
+    bool residenteEncontrado = false;
+
+    system("clear || cls");
+    cout << "       ---Remover Residente---" << endl;
+    cout << "Digite o CPF do Residente (000.000.000-00): ";
+    cin.ignore();
+    getline(cin, cpf);
+
+    for(int i = 0; i < residentes.size(); i++){
+        if(residentes[i].getCpf() == cpf){
+            residentes.erase(residentes.begin() + i);
+            residenteEncontrado = true;
+            break;
+        }
+    }
+
+    if(residenteEncontrado){
+        cout << "---Residente removido com sucesso!\n" << endl;
+    } else{
+        cout << "---Residente não encontrado!\n" << endl;
+    }
+}
+
+void Administrador::removerFuncionario(){
+    string matricula, funcao;
+    bool funcionarioEncontrado = false, flag = false;
+
+    system("clear || cls");
+    cout << "       ---Remover Funcionário---" << endl;
+    cin.ignore();
+
+    do{
+        try{
+            cout << "Função do Funcionário: ";
+            getline(cin, funcao);
+
+            if(funcao != "Zelador" && funcao != "zelador" && funcao != "Segurança" && funcao != "segurança"){
+                throw runtime_error("---Erro: Função inválida!---\n");
+            } else{
+                flag = true;
+            }
+        } catch(runtime_error &e){
+            cout << e.what() << endl;
+            cin.clear();
+        }
+    } while(!flag);
+
+    cout << "Digite a Matrícula do Funcionário: ";
+    getline(cin, matricula);
+
+    if(funcao == "Zelador" || funcao == "zelador"){
+        for(int i = 0; i < zeladores.size(); i++){
+            if(zeladores[i].getMatricula() == matricula){
+                zeladores.erase(zeladores.begin() + i);
+                funcionarioEncontrado = true;
+                break;
+            }
+        }
+    } else if(funcao == "Segurança" || funcao == "segurança"){
+        for(int i = 0; i < segurancas.size(); i++){
+            if(segurancas[i].getMatricula() == matricula){
+                segurancas.erase(segurancas.begin() + i);
+                funcionarioEncontrado = true;
+                break;
+            }
+        }
+    }
+
+    if(funcionarioEncontrado){
+        cout << "---Funcionário removido com sucesso!---\n" << endl;
+    } else{
+        cout << "\n---Funcionário não encontrado!---\n" << endl;
+    }
+}
+
+void Administrador::buscarResidente(){
+    string cpf;
+    bool residenteEncontrado = false;
+
+    system("clear || cls");
+    cout << "       ---Buscar Residente---" << endl;
+    cout << "Digite o CPF do Residente (000.000.000-00): ";
+    cin.ignore();
+    getline(cin, cpf);
+
+    for(int i = 0; i < residentes.size(); i++){
+        if(residentes[i].getCpf() == cpf){
+            cout << "-------Residente encontrado!-------" << endl;
+            cout << "Nome: " << residentes[i].getNome() << endl;
+            cout << "CPF: " << residentes[i].getCpf() << endl;
+            cout << "Data de Nascimento: " << residentes[i].getDataNascimento() << endl;
+            cout << "Número do Prédio: " << residentes[i].getPredio() << endl;
+            cout << "Número do Apartamento: " << residentes[i].getApartamento() << endl;
+            cout << "Número do Andar: " << residentes[i].getAndar() << endl;
+            cout << "Número da Vaga de Garagem: " << residentes[i].getVagaGaragem() << endl;
+            cout << "Data de Entrada: " << residentes[i].getDataEntrada() << endl;
+            cout << "Data de Saída: " << residentes[i].getDataSaida() << endl;
+            cout << "Telefone: " << residentes[i].getTelefone() << endl;
+            cout << "E-mail: " << residentes[i].getEmail() << endl;
+            cout << "-----------------------------------";
+            cout << endl;
+            residenteEncontrado = true;
+            break;
+        }
+    }
+
+    if(!residenteEncontrado){
+        cout << "---Residente não encontrado!\n" << endl;
+    }
+}
+
+void Administrador::buscarFuncionario(){
+    string matricula;
+    bool funcionarioEncontrado = false;
+
+    system("clear || cls");
+    cout << "       ---Buscar Funcionário---" << endl;
+
+    cout << "Digite a Matrícula do Funcionário: ";
+    cin.ignore();
+    getline(cin, matricula);
+
+    if(zeladores.size() != 0){
+        for(int i = 0; i < zeladores.size(); i++){
+            if(zeladores[i].getMatricula() == matricula){
+                cout << "------Funcionário encontrado!------" << endl;
+                cout << "Nome: " << zeladores[i].getNome() << endl;
+                cout << "CPF: " << zeladores[i].getCpf() << endl;
+                cout << "Data de Nascimento: " << zeladores[i].getDataNascimento() << endl;
+                cout << "Matrícula: " << zeladores[i].getMatricula() << endl;
+                cout << "Função: " << zeladores[i].getFuncao() << endl;
+                cout << "Setor: " << zeladores[i].getSetor() << endl;
+                cout << "Carga Horária: " << zeladores[i].getCargaHoraria() << endl;
+                cout << "Salário: " << zeladores[i].getSalario() << endl;
+                cout << "Turno: " << zeladores[i].getTurno() << endl;
+                cout << "-----------------------------------";
+                cout << endl;
+                funcionarioEncontrado = true;
+                break;
+            }
+        }
+    }
+
+    if(segurancas.size() != 0){
+        for(int i = 0; i < segurancas.size(); i++){
+            if(segurancas[i].getMatricula() == matricula){
+                cout << "------Funcionário encontrado!------" << endl;
+                cout << "Nome: " << segurancas[i].getNome() << endl;
+                cout << "CPF: " << segurancas[i].getCpf() << endl;
+                cout << "Data de Nascimento: " << segurancas[i].getDataNascimento() << endl;
+                cout << "Matrícula: " << segurancas[i].getMatricula() << endl;
+                cout << "Função: " << segurancas[i].getFuncao() << endl;
+                cout << "Setor: " << segurancas[i].getSetor() << endl;
+                cout << "Carga Horária: " << segurancas[i].getCargaHoraria() << endl;
+                cout << "Salário: " << segurancas[i].getSalario() << endl;
+                cout << "Turno: " << segurancas[i].getTurno() << endl;
+                cout << "-----------------------------------";
+                cout << endl;
+                funcionarioEncontrado = true;
+                break;
+            }
         }
     }
 }
