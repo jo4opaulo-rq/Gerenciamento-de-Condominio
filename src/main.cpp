@@ -1,33 +1,80 @@
 #include <iostream>
-// #include "pessoa.hpp"
-#include "porteiros.hpp"
-#include "residentes.hpp"
+#include <limits>
+
+#include "administrador.hpp"
+#include "porteiro.hpp"
 
 using namespace std;
 
 int main2(){
 
-    //Residentes(string nome, string cpf, string dataNascimento, int predio, int apartamento, int andar, int vagaGaragem, string dataEntrada, string dataSaida, string telefone, string email):Pessoa(nome, cpf, dataNascimento
-    Residentes r1("Joao", "123456789-10", "01/01/2000", 1, 1, 1, 1, "01/01/2020", "01/01/2021", "99999-9999", "ze@gmail.com");
+    Administrador administrador;
+    //Zelador zelador
+    int opcao = 0;
 
-    cout << "Residente N°1: " << endl;
-    cout << "Nome: " << r1.getNome() << endl;
-    cout << "CPF: " << r1.getCpf() << endl;
-    cout << "Data de Nascimento: " << r1.getDataNascimento() << endl;
-    cout << "Predio: " << r1.getPredio() << endl;
-    cout << "Apartamento: " << r1.getApartamento() << endl;
-    cout << "Andar: " << r1.getAndar() << endl;
-    cout << "Vaga de Garagem: " << r1.getVagaGaragem() << endl;
-    cout << "Data de Entrada: " << r1.getDataEntrada() << endl;
-    cout << "Data de Saida: " << r1.getDataSaida() << endl;
-    cout << "Telefone: " << r1.getTelefone() << endl;
-    cout << "Email: " << r1.getEmail() << endl;
+    administrador.lerArquivo("archives/residentes");
+    administrador.lerArquivo("archives/segurancas");
+    administrador.lerArquivo("archives/zeladores");
 
+    cout << "---------------------------" << endl;
+    cout << "----------SISTEMA----------" << endl;
+    cout << "---------------------------" << endl;
 
-   Residentes r2("Maria", "123456789-10", "01/01/2000", 1, 1, 1, 1, "01/01/2020", "01/01/2021", "99999-9999", "maria@");
-    cout << "Residente N°2: " << endl;
-    cout << "Nome: " << r2.getNome() << endl;
-    cout << "CPF: " << r2.getCpf() << endl;
+    //login
+
+    do{
+        administrador.menuAdministrador();
+        try{
+            cin >> opcao;
+            if(cin.fail()){
+                throw runtime_error("---Erro: Digite um número inteiro!---\n");
+            }
+        } catch(runtime_error &e){
+            system("clear || cls");
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
+        switch(opcao){
+            case 1:
+                administrador.cadastrarResidente();
+                break;
+            case 2:
+                administrador.cadastrarFuncionario();
+                break;
+            case 3:
+                administrador.listarResidentes();
+                break;
+            case 4:
+                administrador.listarFuncionarios();
+                break;
+            case 5:
+                administrador.removerResidente();
+                break;
+            case 6:
+                administrador.removerFuncionario();
+                break;
+            case 7:
+                administrador.buscarResidente();
+                break;
+            case 8:
+                administrador.buscarFuncionario();
+                break;
+            case 9:
+                system("clear || cls");
+                cout << "---Encerrando Sistema..." << endl;
+                administrador.atualizarArquivo("archives/residentes");
+                administrador.atualizarArquivo("archives/segurancas");
+                administrador.atualizarArquivo("archives/zeladores");
+                break;
+            default:
+                system("clear || cls");
+                cout << "---Opção inválida! Digite um número entre 1 e 9---\n" << endl;
+                break;
+        }
+    } while(opcao != 9);
 
     return 0;
 }
