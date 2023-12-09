@@ -7,16 +7,21 @@ using namespace std;
 Seguranca::Seguranca(){
     this->salario = 0.0;
     this->turno = "";
+    this->flagLeitura = false;
 }
 
-Seguranca::Seguranca(string nome, string cpf, string dataNascimento, string matricula, string funcao, string setor, float cargaHoraria, float salario, string turno) : Funcionarios(matricula, funcao, setor, cargaHoraria, salario), Pessoa(nome, cpf, dataNascimento){
-    if(turno == "Noturno"){
-        this->salario = salario + (salario * adicionalNoturno) + (salario * adicionalPericulosidade);
+Seguranca::Seguranca(string nome, string cpf, string dataNascimento, string matricula, string funcao, string setor, float cargaHoraria, float salario, string turno, bool flagLeitura) : Funcionarios(matricula, funcao, setor, cargaHoraria, salario), Pessoa(nome, cpf, dataNascimento){
+    if(flagLeitura){
+        this->salario = salario;
     } else{
-        this->salario = salario + (salario * adicionalPericulosidade);
+        if(turno == "noturno"){
+            this->salario = salario + (salario * adicionalPericulosidade) + (salario * adicionalNoturno);
+        } else{
+            this->salario = salario + (salario * adicionalPericulosidade);
+        }
     }
-
     this->turno = turno;
+    this->flagLeitura = flagLeitura;
 }
 
 string Seguranca::getTurno(){
@@ -32,9 +37,17 @@ void Seguranca::setTurno(string turno){
 }
 
 void Seguranca::setSalario(float salario){
-    if(turno == "noturno"){
-        this->salario = salario + (salario * adicionalNoturno) + (salario * adicionalPericulosidade);
+    if(flagLeitura){
+        this->salario = salario;
     } else{
-        this->salario = salario + (salario * adicionalPericulosidade);
+        if(turno == "noturno"){
+            this->salario = salario + (salario * adicionalPericulosidade) + (salario * adicionalNoturno);
+        } else{
+            this->salario = salario + (salario * adicionalPericulosidade);
+        }
     }
+}
+
+void Seguranca::setFlagLeitura(bool flagLeitura){
+    this->flagLeitura = flagLeitura;
 }

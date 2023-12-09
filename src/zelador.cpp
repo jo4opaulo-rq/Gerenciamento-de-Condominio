@@ -9,9 +9,14 @@ Zelador::Zelador(){
     this->turno = "";
 }
 
-Zelador::Zelador(string nome, string cpf, string dataNascimento, string matricula, string funcao, string setor, float cargaHoraria, float salario, string turno) : Funcionarios(matricula, funcao, setor, cargaHoraria, salario), Pessoa(nome, cpf, dataNascimento){
-    this->salario = salario + (salario * adicionalInsalubridade);
+Zelador::Zelador(string nome, string cpf, string dataNascimento, string matricula, string funcao, string setor, float cargaHoraria, float salario, string turno, bool flagLeitura) : Funcionarios(matricula, funcao, setor, cargaHoraria, salario), Pessoa(nome, cpf, dataNascimento){
+    if(flagLeitura){
+        this->salario = salario;
+    } else{
+        salario = salario + (salario * adicionalInsalubridade);
+    }
     this->turno = turno;
+    this->flagLeitura = flagLeitura;
 }
 
 string Zelador::getTurno(){
@@ -27,5 +32,9 @@ void Zelador::setTurno(string turno){
 }
 
 void Zelador::setSalario(float salario){
-    this->salario = salario;
+    this->salario = salario + (salario * adicionalInsalubridade);
+}
+
+void Zelador::setFlagLeitura(bool flagLeitura){
+    this->flagLeitura = flagLeitura;
 }
