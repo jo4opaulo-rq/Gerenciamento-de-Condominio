@@ -158,18 +158,18 @@ void Porteiro::cadastrarVisitante(){
 }
 
 void Porteiro::listarVisitantes(){
-    system(clear || cls);
+    system("clear || cls");
 
-    if(visitante.size() == 0){
+    if(Visitantes.size() == 0){
         cout << "Não há visitantes cadastrados!" << endl;
     } else{
-        for(int i = 0; i < visitante.size(); i++){
+        for(int i = 0; i < Visitantes.size(); i++){
             cout << "-----Lista de visitantes-----" << endl;
-            cout << "Nome do visitante: " << visitante[i].getNomeVisitante() << endl;
-            cout << "Nome do visitado: " << visitante[i].getNomeVisitado() << endl;
-            cout << "Número do apartamento: " << visitante[i].getApartamento() << endl;
-            cout << "Número do andar: " << visitante[i].getAndar() << endl;
-            cout << "Data da visita: " << visitante[i].getDataVisita() << endl;
+            cout << "Nome do visitante: " << Visitantes[i].getNomeVisitante() << endl;
+            cout << "Nome do visitado: " << Visitantes[i].getNomeVisitado() << endl;
+            cout << "Número do apartamento: " << Visitantes[i].getApartamento() << endl;
+            cout << "Número do andar: " << Visitantes[i].getAndar() << endl;
+            cout << "Data da visita: " << Visitantes[i].getDataVisita() << endl;
             cout << "-----------------------------\n" << endl;
         }
     }
