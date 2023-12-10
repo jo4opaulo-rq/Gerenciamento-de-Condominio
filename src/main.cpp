@@ -16,13 +16,62 @@ int main2(){
     administrador.lerArquivo("archives/segurancas");
     administrador.lerArquivo("archives/zeladores");
 
+<<<<<<< Updated upstream
+=======
+    porteiro.lerArquivo("archives/visitantes");
+    porteiro.lerArquivo("archives/encomendas");
+    porteiro.lerArquivo("archives/residentes");
+
+>>>>>>> Stashed changes
     cout << "---------------------------" << endl;
     cout << "----------SISTEMA----------" << endl;
     cout << "---------------------------" << endl;
 
     //login
 
+<<<<<<< Updated upstream
     do{
+=======
+            switch(opcao){
+                case 1:
+                    porteiro.cadastrarVisitante();
+                    break;
+                case 2:
+                    porteiro.cadastrarEncomenda();
+                    break;
+                case 3:
+                    porteiro.listarVisitantes();
+                    break;
+                case 4:
+                    //porteiro.listarEncomendas();
+                    break;
+                case 5:
+                    //porteiro.removerResidente();
+                    break;
+                case 6:
+                    //porteiro.removerEncomenda();
+                    break;
+                case 7:
+                    //porteiro.buscarResidente();
+                    break;
+                case 8:
+                    porteiro.buscarEncomenda();
+                    break;
+                case 9:
+                    system("clear || cls");
+                    cout << "---Encerrando Sistema..." << endl;
+                    //porteiro.atualizarArquivo("archives/residentes");
+                    //porteiro.atualizarArquivo("archives/encomendas");
+                    break;
+                default:
+                    system("clear || cls");
+                    cout << "---Opção inválida! Digite um número entre 1 e 9---\n" << endl;
+                    break;
+            }
+        } while(opcao != 9);
+    } else{
+        do{
+>>>>>>> Stashed changes
         administrador.menuAdministrador();
         try{
             cin >> opcao;

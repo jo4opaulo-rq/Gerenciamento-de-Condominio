@@ -5,17 +5,19 @@
 using namespace std;
 
 Visitante::Visitante(){
-    nomeVisitado = "";
+    nomeVisitado  = "";
     nomeVisitante = "";
-    apartamento = 0;
-    andar = 0;
+    apartamento   = 0;
+    andar         = 0;
+    dataVisita    = "S/D";
 }
 
-Visitante::Visitante(string nomeVisitante, string nomeVisitado, int apartamento, int andar){
-    this->nomeVisitado = nomeVisitado;
+Visitante::Visitante(string nomeVisitante, string nomeVisitado, int apartamento, int andar, string dataVisita){
+    this->nomeVisitado  = nomeVisitado;
     this->nomeVisitante = nomeVisitante;
-    this->apartamento = apartamento;
-    this->andar = andar;
+    this->apartamento   = apartamento;
+    this->andar         = andar;
+    this->dataVisita    = dataVisita;
 }
 
 string Visitante::getNomeVisitante(){
@@ -34,6 +36,10 @@ int Visitante::getAndar(){
     return andar;
 }
 
+string Visitante::getDataVisita(){
+    return dataVisita;
+}
+
 void Visitante::setNomeVisitante(string nomeVisitante){
     this->nomeVisitante = nomeVisitante;
 }
@@ -48,4 +54,8 @@ void Visitante::setApartamento(int apartamento){
 
 void Visitante::setAndar(int andar){
     this->andar = andar;
+}
+
+void Visitante::setDataVisita(string dataVisita){
+    this->dataVisita = dataVisita;
 }
