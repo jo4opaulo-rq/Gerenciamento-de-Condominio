@@ -6,45 +6,6 @@
 
 using namespace std;
 
-Porteiro::Porteiro(){
-    this->salario = 0.0;
-    this->turno = "Manhã";
-}
-
-Porteiro::Porteiro(string nome, string cpf, string dataNascimento, string matricula, string funcao, string setor, float cargaHoraria, float salario, string turno, string portaria, string senha) : Funcionarios(matricula, funcao, setor, cargaHoraria, salario){
-    this->salario = salario;
-    this->turno = turno;
-    this->portaria = portaria;
-    this->senha = senha;
-}
-
-string Porteiro::getTurno(){
-    return turno;
-}
-
-string Porteiro::getPortaria(){
-    return portaria;
-}
-
-string Porteiro::getSenha(){
-    return senha;
-}
-
-void Porteiro::setTurno(string turno){
-    this->turno = turno;
-}
-
-void Porteiro::setPortaria(string portaria){
-    this->portaria = portaria;
-}
-
-void Porteiro::setSenha(string senha){
-    this->senha = senha;
-
-void Porteiro::menuPorteiro(){
-    cout << "1- Cadastrar visitante" << endl;
-    cout << "2- Cadastrar encomenda" << endl;
-    cout << "3- Listar visitantes" << endl;
 void Porteiro::menuPorteiro(){
     cout << "1- Cadastrar visitante" << endl;
     cout << "2- Cadastrar encomenda" << endl;
@@ -57,13 +18,6 @@ void Porteiro::menuPorteiro(){
     cout << "Opção: ";
 }
 
-void Porteiro::lerArquivo(string nomeArquivo){
-    string nome, cpf, dataNascimento, dataEntrada, dataSaida, telefone, email, matricula, funcao, setor, turno;
-    int predio, apartamento, andar, vagaGaragem;
-    float cargaHoraria, salario;
-
-    string nomeRemetente, nomeDestinatario,cpfDestinatario, numeroApartamento, dataRecebimento;
-}
 
 void Porteiro::lerArquivo(string nomeArquivo){
     string nomeRemetente, nomeDestinatario,cpfDestinatario, numeroApartamento, dataRecebimento;
@@ -83,39 +37,7 @@ void Porteiro::lerArquivo(string nomeArquivo){
     } else{
         cout << "Erro ao abrir o arquivo!" << endl;
     }
-    if(nomeArquivo == "archives/encomendas"){
-        for(int i = 0; i < linhas.size(); i+=6){
-            nomeRemetente = linhas[i];
-            nomeDestinatario = linhas[i+1];
-            cpfDestinatario = linhas[i+2];
-            numeroApartamento = linhas[i+3];
-            dataRecebimento = linhas[i+4];
-
-
-    for(int i = 0; i < linhas.size(); i+= 4){
-        nome = linhas[i];
-        cpf = linhas[i + 1];
-        dataNascimento = linhas[i + 2];
-
-        if(nomeArquivo == "archives/residentes"){
-            predio = stoi(linhas[i + 3]);
-            apartamento = stoi(linhas[i + 4]);
-            andar = stoi(linhas[i + 5]);
-            vagaGaragem = stoi(linhas[i + 6]);
-            dataEntrada = linhas[i + 7];
-            dataSaida = linhas[i + 8];
-            telefone = linhas[i + 9];
-            email = linhas[i + 10];
-
-            Residentes novoResidente(nome, cpf, dataNascimento, predio, apartamento, andar, vagaGaragem, dataEntrada, dataSaida, telefone, email);
-            residentes.push_back(novoResidente);
-
-            i += 8;
-}
-
-            Encomenda encomenda(nomeRemetente, nomeDestinatario, cpfDestinatario, numeroApartamento, dataRecebimento);
-            encomendas.push_back(encomenda);
-        }
+    
     for(int i = 0; i < linhas.size(); i+=6){
         nomeRemetente = linhas[i];
         nomeDestinatario = linhas[i+1];

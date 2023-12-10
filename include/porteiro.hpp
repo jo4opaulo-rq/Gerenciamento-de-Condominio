@@ -9,24 +9,6 @@
 #include <vector>
 #include <fstream>
 
-
-class Porteiro : public Funcionarios, public Residentes{
-
-#include "encomenda.hpp"
-#include "visitante.hpp"
-#include <vector>
-#include <fstream>
-
-class Porteiro : public Visitante, public Encomenda{
-    private:
-        std::vector<Visitante> residentes;
-        std::vector<Encomenda> encomendas;
-    public:
-        void menuPorteiro();
-        void lerArquivo(std::string nomeArquivo);
-        void buscarResidente(std::string cpf);
-        
-     
 class Porteiro : public Visitante, public Encomenda, public Residentes{
     private:
         std::vector<Visitante> Visitantes;
@@ -39,7 +21,7 @@ class Porteiro : public Visitante, public Encomenda, public Residentes{
         void cadastrarEncomenda();
         void cadastrarVisitante();
         void listarVisitantes();
-        void buscarEncomenda();
+        
 
     };
 
