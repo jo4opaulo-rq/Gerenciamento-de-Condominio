@@ -16,6 +16,11 @@ int main(){
     administrador.lerArquivo("archives/residentes");
     administrador.lerArquivo("archives/segurancas");
     administrador.lerArquivo("archives/zeladores");
+  
+    porteiro.lerArquivo("archives/visitantes");
+    porteiro.lerArquivo("archives/encomendas");
+    porteiro.lerArquivo("archives/residentes");
+
 
     porteiro.lerArquivo("archives/visitantes");
     porteiro.lerArquivo("archives/encomendas");
@@ -42,6 +47,18 @@ int main(){
                 continue;
             }
 
+    do{
+
+            switch(opcao){
+                case 1:
+                    porteiro.cadastrarVisitante();
+                    break;
+                case 2:
+                    porteiro.cadastrarEncomenda();
+                    break;
+                case 3:
+                    porteiro.listarVisitantes();
+                
             switch(opcao){
                 case 1:
                     //porteiro.cadastrarResidente();
@@ -51,6 +68,7 @@ int main(){
                     break;
                 case 3:
                     //porteiro.listarResidentes();
+
                     break;
                 case 4:
                     //porteiro.listarEncomendas();
@@ -81,6 +99,7 @@ int main(){
         } while(opcao != 9);
     } else{
         do{
+          
         administrador.menuAdministrador();
         try{
             cin >> opcao;
