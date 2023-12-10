@@ -3,10 +3,6 @@
 
 using namespace std;
 
-int main(){
-    Porteiro *porteiro;
-    porteiro->buscarResidente("000.000.000-00");
-
-
-
+int main2(){
+    return 0;
 }

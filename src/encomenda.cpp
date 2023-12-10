@@ -7,13 +7,15 @@ using namespace std;
 Encomenda::Encomenda(){
     this->nomeRemetente = "";
     this->nomeDestinatario = "";
+    this->cpfDestinatario = "";
     this->numeroApartamento = "";
     this->dataRecebimento = "";
 }
 
-Encomenda::Encomenda(string nomeRemetente, string nomeDestinatario, string numeroApartamento, string dataRecebimento){
+Encomenda::Encomenda(string nomeRemetente, string nomeDestinatario, string cpfDestinatario, string numeroApartamento, string dataRecebimento){
     this->nomeRemetente = nomeRemetente;
     this->nomeDestinatario = nomeDestinatario;
+    this->cpfDestinatario = cpfDestinatario;
     this->numeroApartamento = numeroApartamento;
     this->dataRecebimento = dataRecebimento;
 }
@@ -24,6 +26,10 @@ string Encomenda::getNomeRemetente(){
 
 string Encomenda::getNomeDestinatario(){
     return nomeDestinatario;
+}
+
+string Encomenda::getCpfDestinatario(){
+    return cpfDestinatario;
 }
 
 string Encomenda::getNumeroApartamento(){
@@ -40,6 +46,10 @@ void Encomenda::setNomeRemetente(string nomeRemetente){
 
 void Encomenda::setNomeDestinatario(string nomeDestinatario){
     this->nomeDestinatario = nomeDestinatario;
+}
+
+void Encomenda::setCpfDestinatario(string cpfDestinatario){
+    this->cpfDestinatario = cpfDestinatario;
 }
 
 void Encomenda::setNumeroApartamento(string numeroApartamento){
