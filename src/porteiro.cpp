@@ -158,28 +158,19 @@ void Porteiro::cadastrarVisitante(){
 }
 
 void Porteiro::listarVisitantes(){
-    string nomeVisitante, nomeVisitado, dataVisita;
-    int apartamento, andar;
+    system(clear || cls);
 
-    fstream arquivo;
-    arquivo.open("archives/visitantes.txt", ios::in | ios::app);
-    string linha;
-    for(int i = 0; Visitantes.size(); i++){
-        nomeVisitante = linha[i];
-        nomeVisitado  = linha[i+1];
-        apartamento   = (linha[i+2]);
-        andar         = (linha[i+3]);
-        dataVisita    = linha[i+4];
-
-        Visitante visitante(nomeVisitante, nomeVisitado, apartamento, andar, dataVisita);
-        Visitantes.push_back(visitante);
-    }
-
-    for(int i = 0; i < Visitantes.size(); i++){
-        cout << "Nome do visitante: " << Visitantes[i].getNomeVisitante() << endl;
-        cout << "Nome do visitado: " << Visitantes[i].getNomeVisitado() << endl;
-        cout << "Número do apartamento: " << Visitantes[i].getApartamento() << endl;
-        cout << "Número do andar: " << Visitantes[i].getAndar() << endl;
-        cout << "Data da visita: " << Visitantes[i].getDataVisita() << endl;
+    if(visitante.size() == 0){
+        cout << "Não há visitantes cadastrados!" << endl;
+    } else{
+        for(int i = 0; i < visitante.size(); i++){
+            cout << "-----Lista de visitantes-----" << endl;
+            cout << "Nome do visitante: " << visitante[i].getNomeVisitante() << endl;
+            cout << "Nome do visitado: " << visitante[i].getNomeVisitado() << endl;
+            cout << "Número do apartamento: " << visitante[i].getApartamento() << endl;
+            cout << "Número do andar: " << visitante[i].getAndar() << endl;
+            cout << "Data da visita: " << visitante[i].getDataVisita() << endl;
+            cout << "-----------------------------\n" << endl;
+        }
     }
 }
