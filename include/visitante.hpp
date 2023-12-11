@@ -5,19 +5,17 @@
 
   /**
  * @brief Classe que representa um Visitante.
- * 
- * Esta classe armazena informações sobre uma visita, incluindo o nome do visitante,
- * o nome da pessoa visitada, o apartamento e andar visitados, e a data da visita.
+ * @author João Paulo
  */
 class Visitante {
-private: 
+private:
     std::string nomeVisitante;  ///< Nome do visitante.
     std::string nomeVisitado;   ///< Nome da pessoa visitada.
     std::string dataVisita;     ///< Data da visita.
     int         apartamento;    ///< Número do apartamento visitado.
     int         andar;          ///< Número do andar visitado.
 
-public: 
+public:
       /**
      * @brief Construtor padrão da classe Visitante.
      */

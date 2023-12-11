@@ -8,8 +8,9 @@
 
 /**
  * @brief Classe que representa um Segurança.
- * 
+ *
  * Esta classe herda características de Funcionarios e Pessoa.
+ * @author Leandro Felix
  */
 class Seguranca : public Funcionarios, public Pessoa {
 private:
@@ -54,6 +55,7 @@ public:
     /**
      * @brief Define o turno de trabalho do segurança.
      * @param turno Turno de trabalho do segurança.
+     * @details O salario é baseado na carga horária, no adicional de periculosidade e no adicional noturno.
      */
     void setTurno(std::string turno);
 
@@ -66,6 +68,7 @@ public:
     /**
      * @brief Define a flag de leitura, indicando se os dados são provenientes de um arquivo.
      * @param flagLeitura Flag de leitura.
+     * @details Se flagLeitura for true, o salário não será calculado.
      */
     void setFlagLeitura(bool flagLeitura);
 };

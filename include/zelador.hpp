@@ -8,16 +8,17 @@
 
   /**
  * @brief Classe que representa um Zelador.
- * 
+ *
  * Esta classe herda características de Funcionarios e Pessoa.
+ * @author Leandro Felix
  */
 class Zelador : public Funcionarios, public Pessoa {
-private: 
+private:
     float       adicionalInsalubridade = 0.1;  ///< Valor do adicional de insalubridade para o zelador.
     std::string turno;                         ///< Turno de trabalho do zelador.
     bool        flagLeitura;                   ///< Flag para identificar se os dados estão vindo da leitura de um arquivo ou não.
 
-public: 
+public:
       /**
      * @brief Construtor padrão da classe Zelador.
      */
@@ -48,6 +49,7 @@ public:
     /**
      * @brief Obtém o salário do zelador.
      * @return Salário do zelador.
+     * @details O salário é baseado na carga horária e no adicional de insalubridade.
      */
     float getSalario();
 
@@ -67,6 +69,7 @@ public:
     /**
      * @brief Define a flag de leitura.
      * @param flagLeitura Indica se os dados estão vindo da leitura de um arquivo ou não.
+     * @details  Se os dados vierem de um arquivo, o salário não será calculado.
      */
     void setFlagLeitura(bool flagLeitura);
 };

@@ -16,12 +16,12 @@
  *@author Leandro Felix
  */
 class Administrador : public Residentes, public Seguranca, public Zelador {
-private: 
+private:
     std::vector<Residentes> residentes;  ///< Vetor que armazena os residentes cadastrados.
     std::vector<Seguranca>  segurancas;  ///< Vetor que armazena os seguranças cadastrados.
     std::vector<Zelador>    zeladores;   ///< Vetor que armazena os zeladores cadastrados.
 
-public: 
+public:
       /**
      * @brief Exibe o menu de opções para o administrador.
      */
@@ -56,12 +56,12 @@ public:
     float lerFloat(float numero, std::string msg);
 
     /**
-     * @brief Cadastra um novo residente com base nas informações fornecidas pelo administrador.
+     * @brief Cadastra um novo residente com base nas informações fornecidas.
      */
     void cadastrarResidente();
 
     /**
-     * @brief Cadastra um novo funcionário (Zelador ou Segurança) com base nas informações fornecidas pelo administrador.
+     * @brief Cadastra um novo funcionário (Zelador ou Segurança) com base nas informações fornecidas.
      */
     void cadastrarFuncionario();
 
