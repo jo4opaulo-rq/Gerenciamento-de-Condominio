@@ -9,12 +9,13 @@ using namespace std;
 void Porteiro::menuPorteiro(){
     cout << "1- Cadastrar visitante" << endl;
     cout << "2- Cadastrar encomenda" << endl;
-    cout << "3- Listar residentes" << endl;
+    cout << "3- Listar visitantes" << endl;
     cout << "4- Listar encomendas" << endl;
     cout << "5- Remover residente" << endl;
     cout << "6- Remover encomenda" << endl;
-    cout << "7- Buscar residentes" << endl;
+    cout << "7- Buscar visitantes" << endl;
     cout << "8- Buscar encomendas" << endl;
+    cout << "9- Sair" << endl;
     cout << "Opção: ";
 }
 
@@ -37,7 +38,7 @@ void Porteiro::lerArquivo(string nomeArquivo){
     } else{
         cout << "Erro ao abrir o arquivo!" << endl;
     }
-    
+
     for(int i = 0; i < linhas.size(); i+=6){
         nomeRemetente = linhas[i];
         nomeDestinatario = linhas[i+1];
@@ -119,9 +120,10 @@ void Porteiro::cadastrarEncomenda(){
         arquivo << cpfDestinatario << endl;
         arquivo << numeroApartamento << endl;
         arquivo << dataRecebimento << endl;
+        arquivo << endl;
         arquivo.close();
     }
-    
+
 }
 
 void Porteiro::cadastrarVisitante(){
@@ -153,23 +155,26 @@ void Porteiro::cadastrarVisitante(){
         arquivo << apartamento << endl;
         arquivo << andar << endl;
         arquivo << dataVisita << endl;
+        arquivo << endl;
         arquivo.close();
     }
 }
 
 void Porteiro::listarVisitantes(){
     salvarArquivo();
+    system("clear || cls");
     if(Visitantes.size() == 0){
         cout << "Não há visitantes cadastrados!" << endl;
     } else{
-        cout << "-----Lista de visitantes-----" << endl;
+        cout << "       -----Lista de visitantes-----" << endl;
         for(int i = 0; i < Visitantes.size(); i++){
+            cout << "Visitante Nº " << i + 1 << endl;
             cout << "Nome do visitante: " << Visitantes[i].getNomeVisitante() << endl;
             cout << "Nome do visitado: " << Visitantes[i].getNomeVisitado() << endl;
             cout << "Número do apartamento: " << Visitantes[i].getApartamento() << endl;
             cout << "Número do andar: " << Visitantes[i].getAndar() << endl;
             cout << "Data da visita: " << Visitantes[i].getDataVisita() << endl;
-            cout << "-----------------------------\n" << endl;
+            cout << "---------------------------------\n" << endl;
         }
     }
 }
@@ -191,7 +196,7 @@ void Porteiro::salvarArquivo(){
 
         arquivo.close();
     }
-    
+
     for(int i = 0; i < linhas.size(); i+=6){
         nomeVisitant = linhas[i];
         nomeVisitado = linhas[i+1];
