@@ -2,6 +2,8 @@
 #define LOGIN_HPP
 
 #include <iostream>
+#include "administrador.hpp"
+#include "porteiro.hpp"
 
 class Login{
     private:
@@ -11,6 +13,8 @@ class Login{
         std::string senhaAdministrador = "admin";
     public:
         bool fazerLogin(std::string funcao);
+        void telaAdministrador();
+        void telaPorteiro();
 };
 
 #endif
