@@ -15,6 +15,4 @@ add_executable( main
                 src/visitante.cpp
                 src/zelador.cpp
                 src/seguranca.cpp
-                src/test.cpp
-                
                 )
