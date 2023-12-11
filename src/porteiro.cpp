@@ -12,7 +12,7 @@ void Porteiro::menuPorteiro(){
     cout << "3- Listar visitantes" << endl;
     cout << "4- Buscar encomenda" << endl;
     cout << "5- Buscar visitante por data" << endl;
-    cout << "9- Sair" << endl;
+    cout << "6- Sair" << endl;
     cout << "Opção: ";
 }
 
@@ -60,34 +60,6 @@ void Porteiro::lerArquivo(string nomeArquivo){
             Encomenda encomenda(nomeRemetente, nomeDestinatario, cpfDestinatario, numeroApartamento, dataRecebimento);
             encomendas.push_back(encomenda);
         }
-    }
-}
-
-void Porteiro::salvarArquivo(){
-     vector<string> linhas;
-    string nomeVisitant, nomeVisitado, dataVisita;
-    int apartamento, andar;
-    fstream arquivo;
-
-    arquivo.open("archives/visitantes.txt", ios::in | ios::app);
-    if(arquivo.is_open()){
-        string linha;
-
-        while(getline(arquivo, linha)){
-            linhas.push_back(linha);
-        }
-
-        arquivo.close();
-    }
-
-    for(int i = 0; i < linhas.size(); i+=6){
-        nomeVisitant = linhas[i];
-        nomeVisitado = linhas[i+1];
-        apartamento  = stoi(linhas[i+2]);
-        andar        = stoi(linhas[i+3]);
-        dataVisita   = linhas[i+4];
-        Visitante visitante(nomeVisitant, nomeVisitado, apartamento, andar, dataVisita);
-        Visitantes.push_back(visitante);
     }
 }
 
@@ -178,19 +150,24 @@ void Porteiro::listarVisitantes(){
 void Porteiro::buscarEncomenda(){
     string cpfDestinatario;
 
+    system("clear || cls");
     cout << "Digite o CPF do destinatário: ";
     cin.ignore();
     getline(cin, cpfDestinatario);
 
-    cout << "cpf: " << cpfDestinatario << endl;
-
-    for(int i = 0; i < encomendas.size(); i++){
-        if(encomendas[i].getCpfDestinatario() == cpfDestinatario){
-            cout << "Nome do remetente: " << encomendas[i].getNomeRemetente() << endl;
-            cout << "Nome do destinatário: " << encomendas[i].getNomeDestinatario() << endl;
-            cout << "CPF do destinatário: " << encomendas[i].getCpfDestinatario() << endl;
-            cout << "Número do apartamento: " << encomendas[i].getNumeroApartamento() << endl;
-            cout << "Data de recebimento: " << encomendas[i].getDataRecebimento() << endl;
+    if(encomendas.size() == 0){
+        cout << "Não há encomendas cadastradas!" << endl;
+    } else{
+        for(int i = 0; i < encomendas.size(); i++){
+            if(encomendas[i].getCpfDestinatario() == cpfDestinatario){
+                cout << "---------------------------------" << endl;
+                cout << "Nome do remetente: " << encomendas[i].getNomeRemetente() << endl;
+                cout << "Nome do destinatário: " << encomendas[i].getNomeDestinatario() << endl;
+                cout << "CPF do destinatário: " << encomendas[i].getCpfDestinatario() << endl;
+                cout << "Número do apartamento: " << encomendas[i].getNumeroApartamento() << endl;
+                cout << "Data de recebimento: " << encomendas[i].getDataRecebimento() << endl;
+                cout << "---------------------------------\n" << endl;
+            }
         }
     }
 }

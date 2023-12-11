@@ -17,7 +17,7 @@ class Porteiro : public Visitante, public Encomenda, public Residentes{
     public:
         void menuPorteiro();
         void lerArquivo(std::string nomeArquivo);
-        void salvarArquivo();
+        void atualizarArquivo();
         void cadastrarEncomenda();
         void cadastrarVisitante();
         void listarVisitantes();
