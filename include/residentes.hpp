@@ -6,8 +6,9 @@
 
 /**
  * @brief Classe que representa um Residente.
- * 
+ *
  * Esta classe herda características de Pessoa.
+ * @author Leandro Felix
  */
 class Residentes : public Pessoa {
 private:

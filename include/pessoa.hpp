@@ -5,16 +5,15 @@
 
   /**
  * @brief Classe que representa uma pessoa.
- * 
- * Esta classe contém informações básicas sobre uma pessoa, como nome, CPF e data de nascimento.
+ * @author Leandro Felix
  */
 class Pessoa {
-private: 
+private:
     std::string nome;            ///< Nome da pessoa.
     std::string cpf;             ///< CPF da pessoa.
     std::string dataNascimento;  ///< Data de nascimento da pessoa.
 
-public: 
+public:
       /**
      * @brief Construtor padrão da classe Pessoa.
      */

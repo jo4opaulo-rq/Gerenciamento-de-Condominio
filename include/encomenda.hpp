@@ -5,17 +5,17 @@
 
 /**
  *@brief Classe que representa uma encomenda.
- *@author Leandro Felix
+ *@author João Paulo
  */
 class Encomenda {
-private: 
+private:
     std::string nomeRemetente;      ///< Nome do remetente da encomenda.
     std::string nomeDestinatario;   ///< Nome do destinatário da encomenda.
     std::string cpfDestinatario;    ///< CPF do destinatário da encomenda.
     std::string numeroApartamento;  ///< Número do apartamento da encomenda.
     std::string dataRecebimento;    ///< Data de recebimento da encomenda.
 
-public: 
+public:
       /**
      * @brief Construtor padrão da classe Encomenda.
      */

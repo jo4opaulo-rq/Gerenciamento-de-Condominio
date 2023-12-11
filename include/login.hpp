@@ -9,6 +9,7 @@
  * @brief Classe que representa o sistema de login.
  *
  * Esta classe é responsável por autenticar usuários como Administrador ou Porteiro.
+ * @author Leandro Felix, João Paulo
  */
 class Login {
 private:

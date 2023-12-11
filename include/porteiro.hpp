@@ -13,6 +13,7 @@
  * @brief Classe que representa um Porteiro.
  *
  * Esta classe herda características de Funcionarios, Encomenda, Visitante e Residentes.
+ * @author João Paulo
  */
 class Porteiro : public Visitante, public Encomenda, public Residentes {
 private:
@@ -27,13 +28,13 @@ public:
     void menuPorteiro();
 
       /**
-     * @brief Lê informações de um arquivo e carrega os dados nas listas.
+     * @brief Lê informações de um arquivo e carrega os dados do objeto.
      * @param nomeArquivo Nome do arquivo a ser lido.
      */
     void lerArquivo(std::string nomeArquivo);
 
     /**
-     * @brief Atualiza as informações do arquivo com base nas listas atuais.]
+     * @brief Atualiza as informações do arquivo com base nos dados do objeto.
      * @param nomeArquivo Nome do arquivo a ser atualizado.
      */
     void atualizarArquivo(std::string nomeArquivo);

@@ -4,7 +4,7 @@
 #include <iostream>
 
 /**
- * @brief Classe que representa um funcionário genérico.
+ * @brief Classe que representa um funcionário.
  * @author Leandro Felix
  */
 class Funcionarios {
