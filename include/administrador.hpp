@@ -18,6 +18,8 @@ class Administrador : public Residentes, public Seguranca, public Zelador{
         void menuAdministrador();
         void lerArquivo(std::string nomeArquivo);
         void atualizarArquivo(std::string nomeArquivo);
+        int lerInt(int numero, std::string msg);
+        float lerFloat(float numero, std::string msg);
         void cadastrarResidente();
         void cadastrarFuncionario();
         void listarResidentes();
