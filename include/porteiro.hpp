@@ -17,12 +17,12 @@ class Porteiro : public Visitante, public Encomenda, public Residentes{
     public:
         void menuPorteiro();
         void lerArquivo(std::string nomeArquivo);
-        void buscarEncomenda();
+        void salvarArquivo();
         void cadastrarEncomenda();
         void cadastrarVisitante();
         void listarVisitantes();
+        void buscarEncomenda();
         void buscarVisitanteData();
-        void salvarArquivo();
 
     };
 

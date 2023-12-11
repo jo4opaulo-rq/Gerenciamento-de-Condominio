@@ -10,11 +10,8 @@ void Porteiro::menuPorteiro(){
     cout << "1- Cadastrar visitante" << endl;
     cout << "2- Cadastrar encomenda" << endl;
     cout << "3- Listar visitantes" << endl;
-    cout << "4- Listar encomendas" << endl;
-    cout << "5- Remover residente" << endl;
-    cout << "6- Remover encomenda" << endl;
-    cout << "7- Buscar visitantes" << endl;
-    cout << "8- Buscar encomendas" << endl;
+    cout << "4- Buscar encomenda" << endl;
+    cout << "5- Buscar visitante por data" << endl;
     cout << "9- Sair" << endl;
     cout << "Opção: ";
 }
@@ -22,6 +19,8 @@ void Porteiro::menuPorteiro(){
 
 void Porteiro::lerArquivo(string nomeArquivo){
     string nomeRemetente, nomeDestinatario,cpfDestinatario, numeroApartamento, dataRecebimento;
+    string nomeVisitante, nomeVisitado, dataVisita;
+    int apartamento, andar;
     vector<string> linhas;
     fstream arquivo;
 
@@ -39,60 +38,58 @@ void Porteiro::lerArquivo(string nomeArquivo){
         cout << "Erro ao abrir o arquivo!" << endl;
     }
 
+    if(nomeArquivo == "archives/visitantes"){
+        for(int i = 0; i < linhas.size(); i+=6){
+            nomeVisitante = linhas[i];
+            nomeVisitado = linhas[i+1];
+            apartamento  = stoi(linhas[i+2]);
+            andar        = stoi(linhas[i+3]);
+            dataVisita   = linhas[i+4];
+
+            Visitante visitante(nomeVisitante, nomeVisitado, apartamento, andar, dataVisita);
+            Visitantes.push_back(visitante);
+        }
+    } else if(nomeArquivo == "archives/encomendas"){
+        for(int i = 0; i < linhas.size(); i+=6){
+            nomeRemetente = linhas[i];
+            nomeDestinatario = linhas[i+1];
+            cpfDestinatario = linhas[i+2];
+            numeroApartamento = linhas[i+3];
+            dataRecebimento = linhas[i+4];
+
+            Encomenda encomenda(nomeRemetente, nomeDestinatario, cpfDestinatario, numeroApartamento, dataRecebimento);
+            encomendas.push_back(encomenda);
+        }
+    }
+}
+
+void Porteiro::salvarArquivo(){
+     vector<string> linhas;
+    string nomeVisitant, nomeVisitado, dataVisita;
+    int apartamento, andar;
+    fstream arquivo;
+
+    arquivo.open("archives/visitantes.txt", ios::in | ios::app);
+    if(arquivo.is_open()){
+        string linha;
+
+        while(getline(arquivo, linha)){
+            linhas.push_back(linha);
+        }
+
+        arquivo.close();
+    }
+
     for(int i = 0; i < linhas.size(); i+=6){
-        nomeRemetente = linhas[i];
-        nomeDestinatario = linhas[i+1];
-        cpfDestinatario = linhas[i+2];
-        numeroApartamento = linhas[i+3];
-        dataRecebimento = linhas[i+4];
-
-        Encomenda encomenda(nomeRemetente, nomeDestinatario, cpfDestinatario, numeroApartamento, dataRecebimento);
-        encomendas.push_back(encomenda);
-
-    }
-    /*for(int i = 0; i < linhas.size(); i+= 4){
-        nome           = linhas[i];
-        cpf            = linhas[i + 1];
-        dataNascimento = linhas[i + 2];
-
-        if(nomeArquivo == "archives/residentes"){
-            predio      = stoi(linhas[i + 3]);
-            apartamento = stoi(linhas[i + 4]);
-            andar       = stoi(linhas[i + 5]);
-            vagaGaragem = stoi(linhas[i + 6]);
-            dataEntrada = linhas[i + 7];
-            dataSaida   = linhas[i + 8];
-            telefone    = linhas[i + 9];
-            email       = linhas[i + 10];
-
-            Residentes novoResidente(nome, cpf, dataNascimento, predio, apartamento, andar, vagaGaragem, dataEntrada, dataSaida, telefone, email);
-            residente.push_back(novoResidente);
-
-            i += 8;
-        }
-    }*/
-}
-
-void Porteiro::buscarEncomenda(){
-    string cpfDestinatario;
-
-    cout << "Digite o CPF do destinatário: ";
-    cin.ignore();
-    getline(cin, cpfDestinatario);
-
-    cout << "cpf: " << cpfDestinatario << endl;
-
-    for(int i = 0; i < encomendas.size(); i++){
-        if(encomendas[i].getCpfDestinatario() == cpfDestinatario){
-            cout << "Nome do remetente: " << encomendas[i].getNomeRemetente() << endl;
-            cout << "Nome do destinatário: " << encomendas[i].getNomeDestinatario() << endl;
-            cout << "CPF do destinatário: " << encomendas[i].getCpfDestinatario() << endl;
-            cout << "Número do apartamento: " << encomendas[i].getNumeroApartamento() << endl;
-            cout << "Data de recebimento: " << encomendas[i].getDataRecebimento() << endl;
-        }
+        nomeVisitant = linhas[i];
+        nomeVisitado = linhas[i+1];
+        apartamento  = stoi(linhas[i+2]);
+        andar        = stoi(linhas[i+3]);
+        dataVisita   = linhas[i+4];
+        Visitante visitante(nomeVisitant, nomeVisitado, apartamento, andar, dataVisita);
+        Visitantes.push_back(visitante);
     }
 }
-
 
 void Porteiro::cadastrarEncomenda(){
     string nomeRemetente, nomeDestinatario, cpfDestinatario, numeroApartamento, dataRecebimento;
@@ -161,7 +158,6 @@ void Porteiro::cadastrarVisitante(){
 }
 
 void Porteiro::listarVisitantes(){
-    salvarArquivo();
     system("clear || cls");
     if(Visitantes.size() == 0){
         cout << "Não há visitantes cadastrados!" << endl;
@@ -179,46 +175,49 @@ void Porteiro::listarVisitantes(){
     }
 }
 
+void Porteiro::buscarEncomenda(){
+    string cpfDestinatario;
 
-void Porteiro::salvarArquivo(){
-     vector<string> linhas;
-    string nomeVisitant, nomeVisitado, dataVisita;
-    int apartamento, andar;
-    fstream arquivo;
+    cout << "Digite o CPF do destinatário: ";
+    cin.ignore();
+    getline(cin, cpfDestinatario);
 
-    arquivo.open("archives/visitantes.txt", ios::in | ios::app);
-    if(arquivo.is_open()){
-        string linha;
+    cout << "cpf: " << cpfDestinatario << endl;
 
-        while(getline(arquivo, linha)){
-            linhas.push_back(linha);
+    for(int i = 0; i < encomendas.size(); i++){
+        if(encomendas[i].getCpfDestinatario() == cpfDestinatario){
+            cout << "Nome do remetente: " << encomendas[i].getNomeRemetente() << endl;
+            cout << "Nome do destinatário: " << encomendas[i].getNomeDestinatario() << endl;
+            cout << "CPF do destinatário: " << encomendas[i].getCpfDestinatario() << endl;
+            cout << "Número do apartamento: " << encomendas[i].getNumeroApartamento() << endl;
+            cout << "Data de recebimento: " << encomendas[i].getDataRecebimento() << endl;
         }
-
-        arquivo.close();
     }
-
-    for(int i = 0; i < linhas.size(); i+=6){
-        nomeVisitant = linhas[i];
-        nomeVisitado = linhas[i+1];
-        apartamento  = stoi(linhas[i+2]);
-        andar        = stoi(linhas[i+3]);
-        dataVisita   = linhas[i+4];
-        Visitante visitante(nomeVisitant, nomeVisitado, apartamento, andar, dataVisita);
-        Visitantes.push_back(visitante);
-    }
-
 }
 
 void Porteiro::buscarVisitanteData(){
-    salvarArquivo();
     string buscarData;
-    cout << "Data" << endl;
+    bool encontrou = false;
+
+    system("clear || cls");
+    cout << "Digite a data da visita: ";
     cin.ignore();
     getline(cin, buscarData);
 
-    for (int i = 0; Visitantes.size(); i++){
+    for(int i = 0; i < Visitantes.size(); i++){
         if(Visitantes[i].getDataVisita() == buscarData){
-            cout << Visitantes[i].getDataVisita() << endl;
+            cout << "---------------------------------" << endl;
+            cout << "Nome do visitante: " << Visitantes[i].getNomeVisitante() << endl;
+            cout << "Nome do visitado: " << Visitantes[i].getNomeVisitado() << endl;
+            cout << "Número do apartamento: " << Visitantes[i].getApartamento() << endl;
+            cout << "Número do andar: " << Visitantes[i].getAndar() << endl;
+            cout << "Data da visita: " << Visitantes[i].getDataVisita() << endl;
+            cout << "---------------------------------\n" << endl;
+            encontrou = true;
         }
+    }
+
+    if(!encontrou){
+        cout << "---Não há visitantes cadastrados nessa data!---\n" << endl;
     }
 }

@@ -97,19 +97,16 @@ int main(){
                     porteiro.listarVisitantes();
                     break;
                 case 4:
-                    porteiro.buscarVisitanteData();
+                    porteiro.buscarEncomenda();
                     break;
                 case 5:
-                    //porteiro.removerResidente();
+                    porteiro.buscarVisitanteData();
                     break;
                 case 6:
-                    //porteiro.removerEncomenda();
                     break;
                 case 7:
-                    //porteiro.buscarResidente();
                     break;
                 case 8:
-                    porteiro.buscarEncomenda();
                     break;
                 case 9:
                     system("clear || cls");
