@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <limits>
 #include "porteiro.hpp"
 
 
@@ -13,7 +14,6 @@ void Porteiro::menuPorteiro(){
     cout << "4- Buscar encomenda" << endl;
     cout << "5- Buscar visitante por data" << endl;
     cout << "6- Sair" << endl;
-    cout << "Opção: ";
 }
 
 
@@ -63,8 +63,63 @@ void Porteiro::lerArquivo(string nomeArquivo){
     }
 }
 
+void Porteiro::atualizarArquivo(string nomeArquivo){
+    fstream arquivo;
+    arquivo.open(nomeArquivo + ".txt", ios::out | ios::trunc);
+
+    if(arquivo.is_open()){
+        if(nomeArquivo == "archives/visitantes"){
+            for(int i = 0; i < Visitantes.size(); i++){
+                arquivo << Visitantes[i].getNomeVisitante() << endl;
+                arquivo << Visitantes[i].getNomeVisitado() << endl;
+                arquivo << Visitantes[i].getApartamento() << endl;
+                arquivo << Visitantes[i].getAndar() << endl;
+                arquivo << Visitantes[i].getDataVisita() << endl;
+                arquivo << endl;
+            }
+        } else if(nomeArquivo == "archives/encomendas"){
+            for(int i = 0; i < encomendas.size(); i++){
+                arquivo << encomendas[i].getNomeRemetente() << endl;
+                arquivo << encomendas[i].getNomeDestinatario() << endl;
+                arquivo << encomendas[i].getCpfDestinatario() << endl;
+                arquivo << encomendas[i].getNumeroApartamento() << endl;
+                arquivo << encomendas[i].getDataRecebimento() << endl;
+                arquivo << endl;
+            }
+        }
+        arquivo.close();
+    } else{
+        cout << "Erro ao abrir o arquivo!" << endl;
+    }
+}
+
+int Porteiro::lerInt(int numero, std::string msg){
+    bool flag = false;
+
+    do{
+        try{
+            cout << msg;
+            cin >> numero;
+            if(cin.fail()){
+                throw runtime_error("\n---Erro: Digite um número inteiro!---\n");
+            } else{
+                flag = true;
+            }
+        } catch(runtime_error &e){
+            system("clear || cls");
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while(!flag);
+
+    return numero;
+}
+
 void Porteiro::cadastrarEncomenda(){
     string nomeRemetente, nomeDestinatario, cpfDestinatario, numeroApartamento, dataRecebimento;
+
+    system("clear || cls");
     cout << "Cadastro de encomenda" << endl;
     cout << "Nome do remetente: ";
     cin.ignore();
@@ -77,7 +132,9 @@ void Porteiro::cadastrarEncomenda(){
     getline(cin, numeroApartamento);
     cout << "Data de recebimento: ";
     getline(cin, dataRecebimento);
-    cout << "Encomenda cadastrada com sucesso!" << endl;
+
+    system("clear || cls");
+    cout << "---Encomenda cadastrada com sucesso!---\n" << endl;
     Encomenda encomenda(nomeRemetente, nomeDestinatario, cpfDestinatario, numeroApartamento, dataRecebimento);
     encomendas.push_back(encomenda);
 
@@ -98,21 +155,22 @@ void Porteiro::cadastrarEncomenda(){
 void Porteiro::cadastrarVisitante(){
     string nomeVisitante, nomeVisitado, dataVisita;
     int apartamento, andar;
+
+    system("clear || cls");
     cout << "Cadastro de visitante" << endl;
     cout << "Nome do visitante: ";
     cin.ignore();
     getline(cin, nomeVisitante);
     cout << "Nome do visitado: ";
     getline(cin, nomeVisitado);
-    cout << "Número do apartamento: ";
-    cin >> apartamento;
-    cout << "Número do andar: ";
-    cin >> andar;
+    apartamento = lerInt(apartamento, "Número do apartamento: ");
+    andar = lerInt(andar, "Número do andar: ");
     cin.ignore();
     cout << "Data da visita: ";
     getline(cin, dataVisita);
 
-    cout << "Visitante cadastrado com sucesso!" << endl;
+    system("clear || cls");
+    cout << "---Visitante cadastrado com sucesso!---\n" << endl;
     Visitante visitante(nomeVisitante, nomeVisitado, apartamento, andar, dataVisita);
     Visitantes.push_back(visitante);
 
@@ -132,7 +190,7 @@ void Porteiro::cadastrarVisitante(){
 void Porteiro::listarVisitantes(){
     system("clear || cls");
     if(Visitantes.size() == 0){
-        cout << "Não há visitantes cadastrados!" << endl;
+        cout << "---Não há visitantes cadastrados!" << endl;
     } else{
         cout << "       -----Lista de visitantes-----" << endl;
         for(int i = 0; i < Visitantes.size(); i++){
@@ -149,6 +207,7 @@ void Porteiro::listarVisitantes(){
 
 void Porteiro::buscarEncomenda(){
     string cpfDestinatario;
+    bool encontrou = false;
 
     system("clear || cls");
     cout << "Digite o CPF do destinatário: ";
@@ -156,7 +215,8 @@ void Porteiro::buscarEncomenda(){
     getline(cin, cpfDestinatario);
 
     if(encomendas.size() == 0){
-        cout << "Não há encomendas cadastradas!" << endl;
+        system("clear || cls");
+        cout << "---Não há encomendas cadastradas!---\n" << endl;
     } else{
         for(int i = 0; i < encomendas.size(); i++){
             if(encomendas[i].getCpfDestinatario() == cpfDestinatario){
@@ -167,8 +227,14 @@ void Porteiro::buscarEncomenda(){
                 cout << "Número do apartamento: " << encomendas[i].getNumeroApartamento() << endl;
                 cout << "Data de recebimento: " << encomendas[i].getDataRecebimento() << endl;
                 cout << "---------------------------------\n" << endl;
+                encontrou = true;
             }
         }
+    }
+
+    if(!encontrou){
+        system("clear || cls");
+        cout << "---Não há encomendas cadastradas para esse CPF!---\n" << endl;
     }
 }
 
@@ -181,20 +247,25 @@ void Porteiro::buscarVisitanteData(){
     cin.ignore();
     getline(cin, buscarData);
 
-    for(int i = 0; i < Visitantes.size(); i++){
-        if(Visitantes[i].getDataVisita() == buscarData){
-            cout << "---------------------------------" << endl;
-            cout << "Nome do visitante: " << Visitantes[i].getNomeVisitante() << endl;
-            cout << "Nome do visitado: " << Visitantes[i].getNomeVisitado() << endl;
-            cout << "Número do apartamento: " << Visitantes[i].getApartamento() << endl;
-            cout << "Número do andar: " << Visitantes[i].getAndar() << endl;
-            cout << "Data da visita: " << Visitantes[i].getDataVisita() << endl;
-            cout << "---------------------------------\n" << endl;
-            encontrou = true;
+    if(Visitantes.size() == 0){
+        cout << "---Não há visitantes cadastrados!---\n" << endl;
+    } else{
+        for(int i = 0; i < Visitantes.size(); i++){
+            if(Visitantes[i].getDataVisita() == buscarData){
+                cout << "---------------------------------" << endl;
+                cout << "Nome do visitante: " << Visitantes[i].getNomeVisitante() << endl;
+                cout << "Nome do visitado: " << Visitantes[i].getNomeVisitado() << endl;
+                cout << "Número do apartamento: " << Visitantes[i].getApartamento() << endl;
+                cout << "Número do andar: " << Visitantes[i].getAndar() << endl;
+                cout << "Data da visita: " << Visitantes[i].getDataVisita() << endl;
+                cout << "---------------------------------\n" << endl;
+                encontrou = true;
+            }
         }
     }
 
     if(!encontrou){
+        system("clear || cls");
         cout << "---Não há visitantes cadastrados nessa data!---\n" << endl;
     }
 }

@@ -12,38 +12,18 @@ int main(){
     int opcao = 0;
     string funcao;
 
-    administrador.lerArquivo("archives/residentes");
-    administrador.lerArquivo("archives/segurancas");
-    administrador.lerArquivo("archives/zeladores");
+    cout << "------------------------------" << endl;
+    cout << "------SISTEMA CONDOMINIO------\n" << endl;
+    cout << "------------------------------" << endl;
 
-    porteiro.lerArquivo("archives/visitantes");
-    porteiro.lerArquivo("archives/encomendas");
-
-    cout << "---------------------------" << endl;
-    cout << "----------SISTEMA----------" << endl;
-    cout << "---------------------------" << endl;
-
-    while(true){
+    do{
         Login login;
         bool statusLogin;
 
         cout << "1- Entrar como porteiro" << endl;
         cout << "2- Entrar como administrador" << endl;
         cout << "3- Sair" << endl;
-        cout << "Opção: ";
-
-        try{
-            cin >> opcao;
-            if(cin.fail()){
-                throw runtime_error("---Erro: Digite um número inteiro!---\n");
-            }
-        } catch(runtime_error &e){
-            system("clear || cls");
-            cout << e.what() << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue;
-        }
+        opcao = login.lerInt(opcao, "Opção: ");
 
         switch(opcao){
             case 1:
@@ -65,13 +45,13 @@ int main(){
             case 3:
                 system("clear || cls");
                 cout << "---Encerrando Sistema..." << endl;
-                return 0;
+                break;
             default:
                 system("clear || cls");
                 cout << "---Opção inválida! Digite um número entre 1 e 3---\n" << endl;
                 break;
         }
-    }
+    } while(opcao != 3);
 
     return 0;
 }
