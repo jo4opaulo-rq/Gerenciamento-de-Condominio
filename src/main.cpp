@@ -3,6 +3,7 @@
 
 #include "administrador.hpp"
 #include "porteiro.hpp"
+#include "login.hpp"
 
 using namespace std;
 
@@ -10,8 +11,8 @@ int main(){
 
     Administrador administrador;
     Porteiro porteiro;
-    string login;
     int opcao = 0;
+    string funcao;
 
     administrador.lerArquivo("archives/residentes");
     administrador.lerArquivo("archives/segurancas");
@@ -24,9 +25,52 @@ int main(){
     cout << "----------SISTEMA----------" << endl;
     cout << "---------------------------" << endl;
 
-    login = "porteiro";
+    while(true){
+        Login login;
+        bool statusLogin;
 
-    if(login == "porteiro"){
+        cout << "1- Entrar como porteiro" << endl;
+        cout << "2- Entrar como administrador" << endl;
+        cout << "3- Sair" << endl;
+        cout << "Opção: ";
+
+        try{
+            cin >> opcao;
+            if(cin.fail()){
+                throw runtime_error("---Erro: Digite um número inteiro!---\n");
+            }
+        } catch(runtime_error &e){
+            system("clear || cls");
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
+        switch(opcao){
+            case 1:
+                funcao = "porteiro";
+                statusLogin = login.fazerLogin(funcao);
+                break;
+            case 2:
+                funcao = "administrador";
+                statusLogin = login.fazerLogin(funcao);
+                break;
+            case 3:
+                system("clear || cls");
+                cout << "---Encerrando Sistema..." << endl;
+                return 0;
+            default:
+                system("clear || cls");
+                cout << "---Opção inválida! Digite um número entre 1 e 3---\n" << endl;
+                break;
+        }
+        if(statusLogin){
+            break;
+        }
+    }
+
+    if(funcao == "porteiro"){
         do{
             porteiro.menuPorteiro();
             try{
@@ -52,7 +96,7 @@ int main(){
                 case 3:
                     porteiro.listarVisitantes();
                     break;
-                case 4: 
+                case 4:
                     porteiro.buscarVisitanteData();
                     break;
                 case 5:
