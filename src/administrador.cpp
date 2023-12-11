@@ -42,31 +42,31 @@ void Administrador::lerArquivo(string nomeArquivo){
     }
 
     for(int i = 0; i < linhas.size(); i+= 4){
-        nome = linhas[i];
-        cpf = linhas[i + 1];
+        nome           = linhas[i];
+        cpf            = linhas[i + 1];
         dataNascimento = linhas[i + 2];
 
         if(nomeArquivo == "archives/residentes"){
-            predio = stoi(linhas[i + 3]);
+            predio      = stoi(linhas[i + 3]);
             apartamento = stoi(linhas[i + 4]);
-            andar = stoi(linhas[i + 5]);
+            andar       = stoi(linhas[i + 5]);
             vagaGaragem = stoi(linhas[i + 6]);
             dataEntrada = linhas[i + 7];
-            dataSaida = linhas[i + 8];
-            telefone = linhas[i + 9];
-            email = linhas[i + 10];
+            dataSaida   = linhas[i + 8];
+            telefone    = linhas[i + 9];
+            email       = linhas[i + 10];
 
             Residentes novoResidente(nome, cpf, dataNascimento, predio, apartamento, andar, vagaGaragem, dataEntrada, dataSaida, telefone, email);
             residentes.push_back(novoResidente);
 
             i += 8;
         } else{
-            matricula = linhas[i + 3];
-            funcao = linhas[i + 4];
-            setor = linhas[i + 5];
+            matricula    = linhas[i + 3];
+            funcao       = linhas[i + 4];
+            setor        = linhas[i + 5];
             cargaHoraria = stof(linhas[i + 6]);
-            salario = stof(linhas[i + 7]);
-            turno = linhas[i + 8];
+            salario      = stof(linhas[i + 7]);
+            turno        = linhas[i + 8];
 
             if(nomeArquivo == "archives/zeladores"){
                 Zelador novoZelador(nome, cpf, dataNascimento, matricula, funcao, setor, cargaHoraria, salario, turno, true);

@@ -5,16 +5,36 @@
 #include "administrador.hpp"
 #include "porteiro.hpp"
 
-class Login{
-    private:
-        std::string loginPorteiro = "porteiro";
-        std::string senhaPorteiro = "porteiro";
-        std::string loginAdministrador = "admin";
-        std::string senhaAdministrador = "admin";
-    public:
-        bool fazerLogin(std::string funcao);
-        void telaAdministrador();
-        void telaPorteiro();
+  /**
+ * @brief Classe que representa o sistema de login.
+ * 
+ * Esta classe é responsável por autenticar usuários como Administrador ou Porteiro.
+ */
+class Login {
+private: 
+    std::string loginPorteiro      = "porteiro";  ///< Login padrão para o porteiro.
+    std::string senhaPorteiro      = "porteiro";  ///< Senha padrão para o porteiro.
+    std::string loginAdministrador = "admin";     ///< Login padrão para o administrador.
+    std::string senhaAdministrador = "admin";     ///< Senha padrão para o administrador.
+
+public: 
+    /**
+     * @brief Realiza o processo de login.
+     * 
+     * @param funcao Função a ser autenticada (Administrador ou Porteiro).
+     * @return true se o login for bem-sucedido, false caso contrário.
+     */
+    bool fazerLogin(std::string funcao);
+
+    /**
+     * @brief Exibe a tela do administrador após o login bem-sucedido.
+     */
+    void telaAdministrador();
+
+    /**
+     * @brief Exibe a tela do porteiro após o login bem-sucedido.
+     */
+    void telaPorteiro();
 };
 
 #endif

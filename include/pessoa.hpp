@@ -3,52 +3,66 @@
 
 #include <iostream>
 
-class Pessoa{
-    /*
-    @see Pessoa
-    @brief Classe criada para servir de base para funcionários e residentes
-    */
-    private:
-        std::string nome;
-        std::string cpf;
-        std::string dataNascimento;
-      /*
-          @details A classe Pessoa tem como atributos o nome, cpf e data de nascimento
-    */
-    public:
-        Pessoa();
-    /*
-            @details Construtor padrão da classe Pessoa, construtor vazio
-    */
-        Pessoa(std::string nome, std::string cpf, std::string dataNascimento);
-    /*
-            @details Construtor parametrizado da classe Pessoa, construtor com parâmetros
-    */
-        std::string getNome();
-      /*
-@details Método utilizado para obter e retornar o valor no atributo nome
-    */
-        std::string getCpf();
-        /*
-@details Método utilizado para obter e retornar o valor no atributo cpf
-    */
-        std::string getDataNascimento();
-    /*
-@details Método utilizado para obter e retornar o valor no atributo data de nascimento
+  /**
+ * @brief Classe que representa uma pessoa.
+ * 
+ * Esta classe contém informações básicas sobre uma pessoa, como nome, CPF e data de nascimento.
+ */
+class Pessoa {
+private: 
+    std::string nome;            ///< Nome da pessoa.
+    std::string cpf;             ///< CPF da pessoa.
+    std::string dataNascimento;  ///< Data de nascimento da pessoa.
 
-*/
-        void setNome(std::string nome);
-    /*
-@details Método utilizado para atribuir um valor ao atributo nome
-*/
-        void setCpf(std::string cpf);
-    /*
-@details Método utilizado para atribuir um valor ao atributo cpf
-*/
-        void setDataNascimento(std::string dataNascimento);
-    /*
-@details Método utilizado para atribuir um valor ao atributo data de nascimento
-*/
+public: 
+      /**
+     * @brief Construtor padrão da classe Pessoa.
+     */
+    Pessoa();
+
+      /**
+     * @brief Construtor que inicializa os membros da classe com valores específicos.
+     * @param nome Nome da pessoa.
+     * @param cpf CPF da pessoa.
+     * @param dataNascimento Data de nascimento da pessoa.
+     */
+    Pessoa(std::string nome, std::string cpf, std::string dataNascimento);
+
+    /**
+     * @brief Obtém o nome da pessoa.
+     * @return Nome da pessoa.
+     */
+    std::string getNome();
+
+    /**
+     * @brief Obtém o CPF da pessoa.
+     * @return CPF da pessoa.
+     */
+    std::string getCpf();
+
+    /**
+     * @brief Obtém a data de nascimento da pessoa.
+     * @return Data de nascimento da pessoa.
+     */
+    std::string getDataNascimento();
+
+    /**
+     * @brief Define o nome da pessoa.
+     * @param nome Nome da pessoa.
+     */
+    void setNome(std::string nome);
+
+    /**
+     * @brief Define o CPF da pessoa.
+     * @param cpf CPF da pessoa.
+     */
+    void setCpf(std::string cpf);
+
+    /**
+     * @brief Define a data de nascimento da pessoa.
+     * @param dataNascimento Data de nascimento da pessoa.
+     */
+    void setDataNascimento(std::string dataNascimento);
 };
 
 #endif

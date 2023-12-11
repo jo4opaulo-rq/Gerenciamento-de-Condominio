@@ -64,3 +64,6 @@ _deps
 # Ignore all local history of files
 .history
 .ionide
+
+#### Doxygen
+html/
