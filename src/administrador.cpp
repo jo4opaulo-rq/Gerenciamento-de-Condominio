@@ -135,6 +135,50 @@ void Administrador::atualizarArquivo(string nomeArquivo){
     }
 }
 
+int Administrador::lerInt(int numero, std::string msg){
+    bool flag = false;
+
+    do{
+        try{
+            cout << msg;
+            cin >> numero;
+            if(cin.fail()){
+                throw runtime_error("\n---Erro: Digite um número inteiro!---\n");
+            } else{
+                flag = true;
+            }
+        } catch(runtime_error &e){
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while(!flag);
+
+    return numero;
+}
+
+float Administrador::lerFloat(float numero, std::string msg){
+    bool flag = false;
+
+    do{
+        try{
+            cout << msg;
+            cin >> numero;
+            if(cin.fail()){
+                throw runtime_error("\n---Erro: Digite um número real!---\n");
+            } else{
+                flag = true;
+            }
+        } catch(runtime_error &e){
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while(!flag);
+
+    return numero;
+}
+
 void Administrador::cadastrarResidente(){
     string nome, cpf, dataNascimento, dataEntrada, dataSaida, telefone, email;
     int predio, apartamento, andar, vagaGaragem;
@@ -144,25 +188,31 @@ void Administrador::cadastrarResidente(){
     cout << "Nome: ";
     cin.ignore();
     getline(cin, nome);
+
     cout << "CPF: ";
     getline(cin, cpf);
+
     cout << "Data de Nascimento: ";
     getline(cin, dataNascimento);
-    cout << "Número do Prédio: ";
-    cin >> predio;
-    cout << "Número do Apartamento: ";
-    cin >> apartamento;
-    cout << "Número do Andar: ";
-    cin >> andar;
-    cout << "Número da Vaga de Garagem: ";
-    cin >> vagaGaragem;
+
+    predio = lerInt(predio, "Número do Prédio: ");
+
+    apartamento = lerInt(apartamento, "Número do Apartamento: ");
+
+    andar = lerInt(andar, "Número do Andar: ");
+    
+    vagaGaragem = lerInt(vagaGaragem, "Número da Vaga de Garagem: ");
+
     cout << "Data de Entrada: ";
     cin.ignore();
     getline(cin, dataEntrada);
+
     cout << "Data de Saída: ";
     getline(cin, dataSaida);
+
     cout << "Telefone: ";
     getline(cin, telefone);
+
     cout << "E-mail: ";
     getline(cin, email);
 
@@ -184,20 +234,26 @@ void Administrador::cadastrarFuncionario(){
     cin.ignore();
     cout << "Nome: ";
     getline(cin, nome);
+
     cout << "CPF: ";
     getline(cin, cpf);
+
     cout << "Data de Nascimento: ";
     getline(cin, dataNascimento);
+
     cout << "Matrícula: ";
     getline(cin, matricula);
+
     cout << "Função: ";
     getline(cin, funcao);
+
     cout << "Setor: ";
     getline(cin, setor);
-    cout << "Carga Horária: ";
-    cin >> cargaHoraria;
-    cout << "Salário: ";
-    cin >> salario;
+
+    cargaHoraria = lerFloat(cargaHoraria, "Carga Horária: ");
+
+    salario = lerFloat(salario, "Salário: ");
+
     cout << "Turno: ";
     cin.ignore();
     getline(cin, turno);
