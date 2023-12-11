@@ -11,16 +11,16 @@
 
   /**
  * @brief Classe que representa um Porteiro.
- * 
+ *
  * Esta classe herda características de Funcionarios, Encomenda, Visitante e Residentes.
  */
 class Porteiro : public Visitante, public Encomenda, public Residentes {
-private: 
+private:
     std::vector<Visitante>  Visitantes;  ///< Lista de visitantes cadastrados.
     std::vector<Encomenda>  encomendas;  ///< Lista de encomendas registradas.
     std::vector<Residentes> residente;   ///< Lista de residentes registrados.
 
-public: 
+public:
       /**
      * @brief Exibe o menu do Porteiro.
      */
@@ -33,9 +33,18 @@ public:
     void lerArquivo(std::string nomeArquivo);
 
     /**
-     * @brief Atualiza as informações do arquivo com base nas listas atuais.
+     * @brief Atualiza as informações do arquivo com base nas listas atuais.]
+     * @param nomeArquivo Nome do arquivo a ser atualizado.
      */
-    void atualizarArquivo();
+    void atualizarArquivo(std::string nomeArquivo);
+
+    /**
+     * @brief Lê um número inteiro da entrada padrão com validação.
+     * @param numero Variável para armazenar o número lido.
+     * @param msg Mensagem a ser exibida antes da leitura.
+     * @return Número inteiro lido.
+     */
+    int lerInt(int numero, std::string msg);
 
     /**
      * @brief Cadastra uma nova encomenda.

@@ -17,7 +17,6 @@ void Administrador::menuAdministrador(){
     cout << "7- Buscar Residente" << endl;
     cout << "8- Buscar Funcionário" << endl;
     cout << "9- Sair" << endl;
-    cout << "Opção: ";
 }
 
 void Administrador::lerArquivo(string nomeArquivo){
@@ -200,7 +199,7 @@ void Administrador::cadastrarResidente(){
     apartamento = lerInt(apartamento, "Número do Apartamento: ");
 
     andar = lerInt(andar, "Número do Andar: ");
-    
+
     vagaGaragem = lerInt(vagaGaragem, "Número da Vaga de Garagem: ");
 
     cout << "Data de Entrada: ";
@@ -510,5 +509,10 @@ void Administrador::buscarFuncionario(){
                 break;
             }
         }
+    }
+
+    if(!funcionarioEncontrado){
+        system("clear || cls");
+        cout << "---Funcionário não encontrado!\n" << endl;
     }
 }

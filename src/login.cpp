@@ -32,7 +32,7 @@ bool Login::fazerLogin(string funcao){
         cout << "---Login ou senha incorretos!---\n" << endl;
         try{
             cout << "1- Tentar novamente" << endl;
-            cout << "2- Sair" << endl;
+            cout << "2- Voltar" << endl;
             cout << "Opção: ";
             cin >> opcao;
             if(cin.fail()){
@@ -47,11 +47,35 @@ bool Login::fazerLogin(string funcao){
         }
 
         if(opcao == 2){
+            system("clear || cls");
             break;
         }
     }
 
     return false;
+}
+
+int Login::lerInt(int numero, std::string msg){
+    bool flag = false;
+
+    do{
+        try{
+            cout << msg;
+            cin >> numero;
+            if(cin.fail()){
+                throw runtime_error("\n---Erro: Digite um número inteiro!---\n");
+            } else{
+                flag = true;
+            }
+        } catch(runtime_error &e){
+            system("clear || cls");
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while(!flag);
+
+    return numero;
 }
 
 void Login::telaAdministrador(){
@@ -64,18 +88,7 @@ void Login::telaAdministrador(){
 
     do{
         administrador.menuAdministrador();
-        try{
-            cin >> opcao;
-            if(cin.fail()){
-                throw runtime_error("---Erro: Digite um número inteiro!---\n");
-            }
-        } catch(runtime_error &e){
-            system("clear || cls");
-            cout << e.what() << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue;
-        }
+        opcao = lerInt(opcao, "Opção: ");
 
         switch(opcao){
             case 1:
@@ -126,18 +139,7 @@ void Login::telaPorteiro(){
 
     do{
             porteiro.menuPorteiro();
-            try{
-                cin >> opcao;
-                if(cin.fail()){
-                    throw runtime_error("---Erro: Digite um número inteiro!---\n");
-                }
-            } catch(runtime_error &e){
-                system("clear || cls");
-                cout << e.what() << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                continue;
-            }
+            opcao = lerInt(opcao, "Opção: ");
 
             switch(opcao){
                 case 1:
@@ -157,7 +159,8 @@ void Login::telaPorteiro(){
                     break;
                 case 6:
                     system("clear || cls");
-                    cout << "---Encerrando Sistema..." << endl;
+                    porteiro.atualizarArquivo("archives/visitantes");
+                    porteiro.atualizarArquivo("archives/encomendas");
                     break;
                 default:
                     system("clear || cls");
