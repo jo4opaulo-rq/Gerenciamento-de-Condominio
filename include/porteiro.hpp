@@ -21,7 +21,8 @@ class Porteiro : public Visitante, public Encomenda, public Residentes{
         void cadastrarEncomenda();
         void cadastrarVisitante();
         void listarVisitantes();
-        
+        void buscarVisitanteData();
+        void salvarArquivo();
 
     };
 

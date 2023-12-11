@@ -50,10 +50,10 @@ int main(){
                     porteiro.cadastrarEncomenda();
                     break;
                 case 3:
-                    //porteiro.listarResidentes();
+                    porteiro.listarVisitantes();
                     break;
-                case 4:
-                    //porteiro.listarEncomendas();
+                case 4: 
+                    porteiro.buscarVisitanteData();
                     break;
                 case 5:
                     //porteiro.removerResidente();

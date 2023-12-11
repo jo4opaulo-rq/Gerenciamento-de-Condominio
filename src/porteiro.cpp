@@ -158,19 +158,62 @@ void Porteiro::cadastrarVisitante(){
 }
 
 void Porteiro::listarVisitantes(){
-    system("clear || cls");
-
+    salvarArquivo();
     if(Visitantes.size() == 0){
         cout << "Não há visitantes cadastrados!" << endl;
     } else{
+        cout << "-----Lista de visitantes-----" << endl;
         for(int i = 0; i < Visitantes.size(); i++){
-            cout << "-----Lista de visitantes-----" << endl;
             cout << "Nome do visitante: " << Visitantes[i].getNomeVisitante() << endl;
             cout << "Nome do visitado: " << Visitantes[i].getNomeVisitado() << endl;
             cout << "Número do apartamento: " << Visitantes[i].getApartamento() << endl;
             cout << "Número do andar: " << Visitantes[i].getAndar() << endl;
             cout << "Data da visita: " << Visitantes[i].getDataVisita() << endl;
             cout << "-----------------------------\n" << endl;
+        }
+    }
+}
+
+
+void Porteiro::salvarArquivo(){
+     vector<string> linhas;
+    string nomeVisitant, nomeVisitado, dataVisita;
+    int apartamento, andar;
+    fstream arquivo;
+
+    arquivo.open("archives/visitantes.txt", ios::in | ios::app);
+    if(arquivo.is_open()){
+        string linha;
+
+        while(getline(arquivo, linha)){
+            linhas.push_back(linha);
+        }
+
+        arquivo.close();
+    }
+    
+    for(int i = 0; i < linhas.size(); i+=6){
+        nomeVisitant = linhas[i];
+        nomeVisitado = linhas[i+1];
+        apartamento  = stoi(linhas[i+2]);
+        andar        = stoi(linhas[i+3]);
+        dataVisita   = linhas[i+4];
+        Visitante visitante(nomeVisitant, nomeVisitado, apartamento, andar, dataVisita);
+        Visitantes.push_back(visitante);
+    }
+
+}
+
+void Porteiro::buscarVisitanteData(){
+    salvarArquivo();
+    string buscarData;
+    cout << "Data" << endl;
+    cin.ignore();
+    getline(cin, buscarData);
+
+    for (int i = 0; Visitantes.size(); i++){
+        if(Visitantes[i].getDataVisita() == buscarData){
+            cout << Visitantes[i].getDataVisita() << endl;
         }
     }
 }
