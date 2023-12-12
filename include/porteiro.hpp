@@ -71,6 +71,14 @@ public:
      * @brief Busca visitantes com base em uma data específica.
      */
     void buscarVisitanteData();
+
+      /**
+ * @brief Lista todas as encomendas.
+ *
+ * Esta função exibe uma lista de todas as encomendas disponíveis.
+ * Cada encomenda é exibida com informações relevantes, como nome do remetente, nome do destinatário, CPF do destinatário, número do apartamento e data de recebimento.
+ */
+    void listarEncomendas();
 };
 
 #endif

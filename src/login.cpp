@@ -157,7 +157,10 @@ void Login::telaPorteiro(){
                 case 5:
                     porteiro.buscarVisitanteData();
                     break;
-                case 6:
+                case 6: 
+                    porteiro.listarEncomendas();
+                    break;
+                case 7:
                     system("clear || cls");
                     porteiro.atualizarArquivo("archives/visitantes");
                     porteiro.atualizarArquivo("archives/encomendas");
@@ -167,5 +170,5 @@ void Login::telaPorteiro(){
                     cout << "---Opção inválida! Digite um número entre 1 e 6---\n" << endl;
                     break;
             }
-        } while(opcao != 6);
+        } while(opcao != 7);
 }

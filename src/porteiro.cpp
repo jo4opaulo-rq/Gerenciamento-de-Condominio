@@ -13,7 +13,8 @@ void Porteiro::menuPorteiro(){
     cout << "3- Listar visitantes" << endl;
     cout << "4- Buscar encomenda" << endl;
     cout << "5- Buscar visitante por data" << endl;
-    cout << "6- Sair" << endl;
+    cout << "6- Listar encomendas" << endl;
+    cout << "7- Sair" << endl;
 }
 
 
@@ -267,5 +268,22 @@ void Porteiro::buscarVisitanteData(){
     if(!encontrou){
         system("clear || cls");
         cout << "---Não há visitantes cadastrados nessa data!---\n" << endl;
+    }
+}
+
+void Porteiro::listarEncomendas(){
+    system("clear || cls");
+    if(encomendas.size() == 0){
+        cout << "---Não há encomendas cadastradas!" << endl;
+    } else{
+        cout << "       -----Lista de encomendas-----" << endl;
+        for(int i = 0; i < encomendas.size(); i++){
+            cout << "Nome do remetente: " << encomendas[i].getNomeRemetente() << endl;
+            cout << "Nome do destinatário: " << encomendas[i].getNomeDestinatario() << endl;
+            cout << "CPF do destinatário: " << encomendas[i].getCpfDestinatario() << endl;
+            cout << "Número do apartamento: " << encomendas[i].getNumeroApartamento() << endl;
+            cout << "Data de recebimento: " << encomendas[i].getDataRecebimento() << endl;
+            cout << "---------------------------------\n" << endl;
+        }
     }
 }
